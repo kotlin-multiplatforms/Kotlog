@@ -1,5 +1,5 @@
 package io.github.kotlinmp.kotlog
 
-expect class LoggerFactory {
+expect object LoggerFactory {
     fun getLogger(name: String): Logger
 }
