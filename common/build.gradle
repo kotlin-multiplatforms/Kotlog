@@ -1,0 +1,11 @@
+apply plugin: 'kotlin-platform-common'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-common', version: kotlin_version
+    testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-annotations-common', version: kotlin_version
+    testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-common', version: kotlin_version
+}

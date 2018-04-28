@@ -1,0 +1,5 @@
+rootProject.name = 'Kotlog'
+include 'common'
+include 'jvm'
+include 'js'
+
