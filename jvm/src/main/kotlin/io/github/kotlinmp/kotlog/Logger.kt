@@ -2,7 +2,7 @@ package io.github.kotlinmp.kotlog
 
 import org.slf4j.Logger as Slf4jLogger
 
-actual class Logger private constructor(private val logger: Slf4jLogger) {
+actual class Logger private constructor(val backingLogger: Slf4jLogger) {
     actual companion object {
         actual val ROOT_LOGGER_NAME: String = Slf4jLogger.ROOT_LOGGER_NAME
 
@@ -12,30 +12,30 @@ actual class Logger private constructor(private val logger: Slf4jLogger) {
     }
 
     actual val name: String
-        get() = logger.name
+        get() = backingLogger.name
     actual val isDebugEnabled: Boolean
-        get() = logger.isDebugEnabled
+        get() = backingLogger.isDebugEnabled
     actual val isErrorEnabled: Boolean
-        get() = logger.isErrorEnabled
+        get() = backingLogger.isErrorEnabled
     actual val isInfoEnabled: Boolean
-        get() = logger.isInfoEnabled
+        get() = backingLogger.isInfoEnabled
     actual val isTraceEnabled: Boolean
-        get() = logger.isTraceEnabled
+        get() = backingLogger.isTraceEnabled
     actual val isWarnEnabled: Boolean
-        get() = logger.isWarnEnabled
+        get() = backingLogger.isWarnEnabled
 
     actual fun debug(message: String, throwable: Throwable?, vararg arguments: Any?) {
         if (throwable != null) {
             if (arguments.isEmpty()) {
-                logger.debug(message, throwable, arguments)
+                backingLogger.debug(message.format(*arguments), throwable)
             } else {
-                logger.debug(message, throwable)
+                backingLogger.debug(message, throwable)
             }
         } else {
             if (arguments.isEmpty()) {
-                logger.debug(message, arguments)
+                backingLogger.debug(message, *arguments)
             } else {
-                logger.debug(message)
+                backingLogger.debug(message)
             }
         }
     }
@@ -43,15 +43,15 @@ actual class Logger private constructor(private val logger: Slf4jLogger) {
     actual fun error(message: String, throwable: Throwable?, vararg arguments: Any?) {
         if (throwable != null) {
             if (arguments.isEmpty()) {
-                logger.error(message, throwable, arguments)
+                backingLogger.error(message.format(*arguments), throwable)
             } else {
-                logger.error(message, throwable)
+                backingLogger.error(message, throwable)
             }
         } else {
             if (arguments.isEmpty()) {
-                logger.error(message, arguments)
+                backingLogger.error(message, *arguments)
             } else {
-                logger.error(message)
+                backingLogger.error(message)
             }
         }
     }
@@ -59,15 +59,15 @@ actual class Logger private constructor(private val logger: Slf4jLogger) {
     actual fun info(message: String, throwable: Throwable?, vararg arguments: Any?) {
         if (throwable != null) {
             if (arguments.isEmpty()) {
-                logger.info(message, throwable, arguments)
+                backingLogger.info(message.format(*arguments), throwable)
             } else {
-                logger.info(message, throwable)
+                backingLogger.info(message, throwable)
             }
         } else {
             if (arguments.isEmpty()) {
-                logger.info(message, arguments)
+                backingLogger.info(message, *arguments)
             } else {
-                logger.info(message)
+                backingLogger.info(message)
             }
         }
     }
@@ -75,15 +75,15 @@ actual class Logger private constructor(private val logger: Slf4jLogger) {
     actual fun trace(message: String, throwable: Throwable?, vararg arguments: Any?) {
         if (throwable != null) {
             if (arguments.isEmpty()) {
-                logger.trace(message, throwable, arguments)
+                backingLogger.trace(message.format(*arguments), throwable)
             } else {
-                logger.trace(message, throwable)
+                backingLogger.trace(message, throwable)
             }
         } else {
             if (arguments.isEmpty()) {
-                logger.trace(message, arguments)
+                backingLogger.trace(message, *arguments)
             } else {
-                logger.trace(message)
+                backingLogger.trace(message)
             }
         }
     }
@@ -91,15 +91,15 @@ actual class Logger private constructor(private val logger: Slf4jLogger) {
     actual fun warn(message: String, throwable: Throwable?, vararg arguments: Any?) {
         if (throwable != null) {
             if (arguments.isEmpty()) {
-                logger.warn(message, throwable, arguments)
+                backingLogger.warn(message.format(*arguments), throwable)
             } else {
-                logger.warn(message, throwable)
+                backingLogger.warn(message, throwable)
             }
         } else {
             if (arguments.isEmpty()) {
-                logger.warn(message, arguments)
+                backingLogger.warn(message, *arguments)
             } else {
-                logger.warn(message)
+                backingLogger.warn(message)
             }
         }
     }
