@@ -61,7 +61,9 @@ dokka {
 }
 
 task dokkaJar(type: Jar) {
-    from dokka
+    from dokka {
+        moduleName = 'kotlog'
+    }
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     description = 'Assembles Kotlin docs with Dokka'
     classifier = 'javadoc'
