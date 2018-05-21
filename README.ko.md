@@ -69,4 +69,5 @@ todo
 
 ## Acknowledgments
 
- * [kotlin-logging](https://github.com/MicroUtils/kotlin-logging)에서 영감을 얻었습니다.
+ * [kotlin-logging](https://github.com/MicroUtils/kotlin-logging)에서 영감을 얻었습니다
+ * [signale](https://github.com/klauscfhq/signale)의 로깅 메시지 양식을 참조했습니다

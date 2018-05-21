@@ -1,0 +1,17 @@
+{
+  "package": {
+    "name": "kotlog",
+    "repo": "maven",
+    "subject": "ranol-github"
+  },
+  "version": {
+    "name": "0.1.0"
+  },
+  "files": [
+    {
+      "includePattern": "build\/upload\/(.*)",
+      "uploadPattern": "$1"
+    }
+  ],
+  "publish": true
+}

@@ -1,3 +1,8 @@
+plugins {
+    id 'org.jetbrains.dokka' version '0.9.16'
+    id 'com.github.johnrengelman.shadow' version '2.0.3'
+}
+
 apply plugin: 'kotlin-platform-jvm'
 
 repositories {
@@ -7,14 +12,13 @@ repositories {
 dependencies {
     expectedBy project(':common')
 
-    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: kotlin_version
-    testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit', version: kotlin_version
-    testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test', version: kotlin_version
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: kotlin_version
 
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta2'
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit', version: kotlin_version
+    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-test', version: kotlin_version
 }
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 compileKotlin {
     kotlinOptions.jvmTarget = '1.8'
@@ -25,3 +29,41 @@ compileTestKotlin {
 }
 
 sourceCompatibility = '1.8'
+
+shadowJar {
+    classifier = null
+    version = null
+    baseName = 'kotlog'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    description = 'Assembles sources JAR'
+    classifier = 'sources'
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+
+    linkMapping {
+        dir = 'src/main/kotlin'
+        url = 'https://github.com/RanolP/mfsjea.jvm/blob/master/src/main/kotlin'
+        suffix = '#L'
+    }
+}
+
+task dokkaJar(type: Jar) {
+    from dokka
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    description = 'Assembles Kotlin docs with Dokka'
+    classifier = 'javadoc'
+}
+
+artifacts {
+    archives jar
+    archives shadowJar
+    archives sourcesJar
+    archives dokkaJar
+}
