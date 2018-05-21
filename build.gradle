@@ -22,7 +22,7 @@ plugins {
 
 allprojects {
     group 'io.github.kotlin-multiplatforms'
-    version '0.1.3'
+    version '0.1.4'
 }
 
 def pomConfig = {
@@ -93,7 +93,7 @@ task prepareUpload(type: Copy, dependsOn: ['build', 'generatePomFileForMyPublica
     include "jvm-${project.version}.jar"
     include "jvm-${project.version}-sources.jar"
     include "jvm-${project.version}-javadoc.jar"
-    include "Kotlog-${project.version}.pom"
+    include "kotlog-${project.version}.pom"
     rename "jvm-${project.version}.jar", "kotlog-${project.version}.jar"
     rename "jvm-${project.version}-sources.jar", "kotlog-${project.version}-sources.jar"
     rename "jvm-${project.version}-javadoc.jar", "kotlog-${project.version}-javadoc.jar"
