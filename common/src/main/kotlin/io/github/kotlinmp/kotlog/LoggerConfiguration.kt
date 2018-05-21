@@ -75,12 +75,12 @@ object LoggerConfiguration {
     internal fun beautify(logType: LogType): String =
         logType.foreground.open + logType.background.open +
                 logType.badge +
-                logType.background.close + logType.foreground.close +
                 " " * (badgeMax - logType.badge.length) + " " +
+                logType.background.close + logType.foreground.close +
                 Modifier.UNDERLINE.open + logType.foreground.open + logType.background.open +
-                logType.label +
+                logType.label + " " +
                 Modifier.UNDERLINE.close + logType.foreground.close + logType.background.close +
-                " " * (labelMax - logType.label.length) + "  "
+                " " * (labelMax - logType.label.length) + " "
 
     internal fun makeStackTrace(prefix: String, message: String): String =
         Color.DARK_GRAY.foreground.open + " " * (removeAnsi(prefix).length + badgeMax + 1) + message + Color.DARK_GRAY.foreground.close
