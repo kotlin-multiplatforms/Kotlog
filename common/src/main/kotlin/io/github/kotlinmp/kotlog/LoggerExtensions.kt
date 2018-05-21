@@ -13,7 +13,7 @@ fun Logger.debug(
     throwable: Throwable? = null,
     type: LogType? = LogType.DEBUG,
     vararg arguments: Any?
-) = log(LogLevel.DEBUG, message, throwable, type, arguments)
+) = log(LogLevel.DEBUG, message, throwable, type, *arguments)
 
 /**
  * Log an message at the ERROR level with an according to the specified format and arguments.
@@ -28,7 +28,7 @@ fun Logger.error(
     throwable: Throwable? = null,
     type: LogType? = LogType.ERROR,
     vararg arguments: Any?
-) = log(LogLevel.ERROR, message, throwable, type, arguments)
+) = log(LogLevel.ERROR, message, throwable, type, *arguments)
 
 /**
  * Log an message at the INFO level with an according to the specified format and arguments.
@@ -43,7 +43,7 @@ fun Logger.info(
     throwable: Throwable? = null,
     type: LogType? = LogType.INFO,
     vararg arguments: Any?
-) = log(LogLevel.INFO, message, throwable, type, arguments)
+) = log(LogLevel.INFO, message, throwable, type, *arguments)
 
 /**
  * Log an message at the TRACE level with an according to the specified format and arguments.
@@ -58,7 +58,7 @@ fun Logger.trace(
     throwable: Throwable? = null,
     type: LogType? = LogType.TRACE,
     vararg arguments: Any?
-) = log(LogLevel.TRACE, message, throwable, type, arguments)
+) = log(LogLevel.TRACE, message, throwable, type, *arguments)
 
 /**
  * Log an message at the WARN level with an according to the specified format and arguments.
@@ -73,7 +73,7 @@ fun Logger.warn(
     throwable: Throwable? = null,
     type: LogType? = LogType.WARN,
     vararg arguments: Any?
-) = log(LogLevel.WARN, message, throwable, type, arguments)
+) = log(LogLevel.WARN, message, throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.debug] method except that the message evaluated lazy.
@@ -88,7 +88,7 @@ fun Logger.debug(
     vararg arguments: Any?,
     message: () -> Any?
 ) =
-    debug(message().toString(), throwable, type, arguments)
+    debug(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.error] method except that the message evaluated lazy.
@@ -99,7 +99,7 @@ fun Logger.error(
     vararg arguments: Any?,
     message: () -> Any?
 ) =
-    error(message().toString(), throwable, type, arguments)
+    error(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.info] method except that the message evaluated lazy.
@@ -110,7 +110,7 @@ fun Logger.info(
     vararg arguments: Any?,
     message: () -> Any?
 ) =
-    info(message().toString(), throwable, type, arguments)
+    info(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.trace] method except that the message evaluated lazy.
@@ -121,7 +121,7 @@ fun Logger.trace(
     vararg arguments: Any?,
     message: () -> Any?
 ) =
-    trace(message().toString(), throwable, type, arguments)
+    trace(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.warn] method except that the message evaluated lazy.
@@ -132,7 +132,7 @@ fun Logger.warn(
     vararg arguments: Any?,
     message: () -> Any?
 ) =
-    warn(message().toString(), throwable, type, arguments)
+    warn(message().toString(), throwable, type, *arguments)
 
 
 /**
@@ -147,5 +147,5 @@ fun Logger.error(
         PlatformDependedFeatures.getErrorName(throwable) + ": " + (throwable.message ?: ""),
         throwable,
         type,
-        arguments
+        *arguments
     )

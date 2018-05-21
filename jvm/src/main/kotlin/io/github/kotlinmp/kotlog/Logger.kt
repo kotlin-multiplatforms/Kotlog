@@ -20,7 +20,7 @@ actual class Logger internal constructor(actual val name: String) {
     ) {
         val prefix = LoggerConfiguration.makePrefix()
         val typeString = (type?.let(LoggerConfiguration::beautify) ?: "")
-        println(prefix + typeString + if (arguments.isEmpty()) message else message.format(arguments))
+        println(prefix + typeString + if (arguments.isEmpty()) message else message.format(*arguments))
         if (throwable != null) {
             val stringWriter = StringWriter()
             throwable.printStackTrace(PrintWriter(stringWriter))

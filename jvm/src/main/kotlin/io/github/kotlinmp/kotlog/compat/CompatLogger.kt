@@ -26,7 +26,7 @@ class CompatLogger(val logger: Logger) {
         throwable: Throwable? = null,
         type: LogType? = null,
         vararg arguments: Any?
-    ) = logger.log(level, message, throwable, type, arguments)
+    ) = logger.log(level, message, throwable, type, *arguments)
 
     /**
      * Log an message at the DEBUG level with an according to the specified format and arguments.
@@ -42,7 +42,7 @@ class CompatLogger(val logger: Logger) {
         throwable: Throwable? = null,
         type: LogType? = LogType.DEBUG,
         vararg arguments: Any?
-    ) = logger.debug(message, throwable, type, arguments)
+    ) = logger.debug(message, throwable, type, *arguments)
 
     /**
      * Log an message at the ERROR level with an according to the specified format and arguments.
@@ -58,7 +58,7 @@ class CompatLogger(val logger: Logger) {
         throwable: Throwable? = null,
         type: LogType? = LogType.ERROR,
         vararg arguments: Any?
-    ) = logger.error(message, throwable, type, arguments)
+    ) = logger.error(message, throwable, type, *arguments)
 
     /**
      * Log an message at the INFO level with an according to the specified format and arguments.
@@ -74,7 +74,7 @@ class CompatLogger(val logger: Logger) {
         throwable: Throwable? = null,
         type: LogType? = LogType.INFO,
         vararg arguments: Any?
-    ) = logger.info(message, throwable, type, arguments)
+    ) = logger.info(message, throwable, type, *arguments)
 
     /**
      * Log an message at the TRACE level with an according to the specified format and arguments.
@@ -90,7 +90,7 @@ class CompatLogger(val logger: Logger) {
         throwable: Throwable? = null,
         type: LogType? = LogType.TRACE,
         vararg arguments: Any?
-    ) = logger.trace(message, throwable, type, arguments)
+    ) = logger.trace(message, throwable, type, *arguments)
 
     /**
      * Log an message at the WARN level with an according to the specified format and arguments.
@@ -106,7 +106,7 @@ class CompatLogger(val logger: Logger) {
         throwable: Throwable? = null,
         type: LogType? = LogType.WARN,
         vararg arguments: Any?
-    ) = logger.warn(message, throwable, type, arguments)
+    ) = logger.warn(message, throwable, type, *arguments)
 
     /**
      * This method is similar to [Logger.debug] method except that the message evaluated lazy.
@@ -121,7 +121,7 @@ class CompatLogger(val logger: Logger) {
         type: LogType? = LogType.DEBUG,
         vararg arguments: Any?,
         message: () -> Any?
-    ) = logger.debug(throwable, type, arguments, message = message)
+    ) = logger.debug(throwable, type, *arguments, message = message)
 
     /**
      * This method is similar to [Logger.error] method except that the message evaluated lazy.
@@ -132,7 +132,7 @@ class CompatLogger(val logger: Logger) {
         type: LogType? = LogType.ERROR,
         vararg arguments: Any?,
         message: () -> Any?
-    ) = logger.error(throwable, type, arguments, message = message)
+    ) = logger.error(throwable, type, *arguments, message = message)
 
     /**
      * This method is similar to [Logger.info] method except that the message evaluated lazy.
@@ -143,7 +143,7 @@ class CompatLogger(val logger: Logger) {
         type: LogType? = LogType.INFO,
         vararg arguments: Any?,
         message: () -> Any?
-    ) = logger.info(throwable, type, arguments, message = message)
+    ) = logger.info(throwable, type, *arguments, message = message)
 
     /**
      * This method is similar to [Logger.trace] method except that the message evaluated lazy.
@@ -154,7 +154,7 @@ class CompatLogger(val logger: Logger) {
         type: LogType? = LogType.TRACE,
         vararg arguments: Any?,
         message: () -> Any?
-    ) = logger.trace(throwable, type, arguments, message = message)
+    ) = logger.trace(throwable, type, *arguments, message = message)
 
     /**
      * This method is similar to [Logger.warn] method except that the message evaluated lazy.
@@ -165,7 +165,7 @@ class CompatLogger(val logger: Logger) {
         type: LogType? = LogType.WARN,
         vararg arguments: Any?,
         message: () -> Any?
-    ) = logger.warn(throwable, type, arguments, message = message)
+    ) = logger.warn(throwable, type, *arguments, message = message)
 
     /**
      * This method is similar to [Logger.error] method except that the message from the throwable
@@ -175,5 +175,5 @@ class CompatLogger(val logger: Logger) {
         throwable: Throwable,
         type: LogType? = LogType.ERROR,
         vararg arguments: Any?
-    ) = logger.error(throwable, type, arguments)
+    ) = logger.error(throwable, type, *arguments)
 }
