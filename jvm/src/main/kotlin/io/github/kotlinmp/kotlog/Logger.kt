@@ -1,11 +1,13 @@
 package io.github.kotlinmp.kotlog
 
+import io.github.kotlinmp.kotlog.compat.Field
 import java.io.PrintWriter
 import java.io.StringWriter
 
 
 actual class Logger internal constructor(actual val name: String) {
     actual companion object {
+        @Field
         actual val ROOT_LOGGER_NAME: String = "ROOT"
     }
 

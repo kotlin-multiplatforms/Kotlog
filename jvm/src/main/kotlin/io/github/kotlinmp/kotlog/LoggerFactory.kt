@@ -1,6 +1,7 @@
 package io.github.kotlinmp.kotlog
 
 import io.github.kotlinmp.kotlog.compat.CompatLogger
+import io.github.kotlinmp.kotlog.compat.Static
 import kotlin.reflect.KClass
 
 actual object LoggerFactory {
@@ -15,6 +16,7 @@ actual object LoggerFactory {
      * @param javaClass the returned logger will be named after class
      * @return logger
      */
+    @Static
     fun getLogger(javaClass: Class<*>): Logger = getLogger(javaClass.name)
 
     /**
@@ -23,8 +25,10 @@ actual object LoggerFactory {
      * @param kClass the returned logger will be named after class
      * @return logger
      */
+    @Static
     fun getLogger(kClass: KClass<*>): Logger = getLogger(kClass.java.name)
 
+    @Static
     fun getCompatLogger(name: String): CompatLogger = javaLoggers.getOrPut(name) { CompatLogger(getLogger(name)) }
 
     /**
@@ -33,6 +37,7 @@ actual object LoggerFactory {
      * @param javaClass the returned logger will be named after class
      * @return logger
      */
+    @Static
     fun getCompatLogger(javaClass: Class<*>): CompatLogger = getCompatLogger(javaClass.name)
 
     inline fun <reified T> getLogger(): Logger = getLogger(T::class)
