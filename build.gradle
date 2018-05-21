@@ -22,11 +22,12 @@ plugins {
 
 allprojects {
     group 'io.github.kotlin-multiplatforms'
-    version '0.1.1'
+    version '0.1.2'
 }
 
 def pomConfig = {
     name 'kotlog'
+    artifactId 'kotlog'
     description project.description
     inceptionYear 2018
     licenses {
@@ -52,7 +53,7 @@ def pomConfig = {
 
     scm {
         connection 'scm:git:https://github.com/kotlin-multiplatforms/Kotlog.git'
-        developerConnection 'scm:git:https://github.com/RanolP/mfsjea.jvm.git'
+        developerConnection 'scm:git:https://github.com/RanolP/Kotlog.git'
         url 'https://github.com/kotlin-multiplatforms/Kotlog'
     }
 }
@@ -69,6 +70,11 @@ publishing {
             version project.version
             pom.withXml {
                 def root = asNode()
+                root.dependencies.'*'.findAll() {
+                    it.groupId.text() == 'io.github.kotlin-multiplatforms'
+                }.each() {
+                    it.parent().remove(it)
+                }
                 root.children().last() + pomConfig
             }
         }
