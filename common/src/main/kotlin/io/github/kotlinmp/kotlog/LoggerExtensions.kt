@@ -1,8 +1,4 @@
-@file:Name("LoggerExtension")
 package io.github.kotlinmp.kotlog
-
-import io.github.kotlinmp.kotlog.compat.Name
-
 
 /**
  * Log an message at the DEBUG level with an according to the specified format and arguments.

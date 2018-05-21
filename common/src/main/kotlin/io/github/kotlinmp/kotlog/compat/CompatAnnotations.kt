@@ -6,8 +6,7 @@ package io.github.kotlinmp.kotlog.compat
     AnnotationTarget.PROPERTY,
     AnnotationTarget.CONSTRUCTOR,
     AnnotationTarget.PROPERTY_GETTER,
-    AnnotationTarget.PROPERTY_SETTER,
-    AnnotationTarget.FILE
+    AnnotationTarget.PROPERTY_SETTER
 )
 expect annotation class Name(val name: String)
 
