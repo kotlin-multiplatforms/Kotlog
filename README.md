@@ -71,3 +71,4 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
  * The translation may not be correct
  * Inspiration by [kotlin-logging](https://github.com/MicroUtils/kotlin-logging)
+ * Referred the logging message style from [signale](https://github.com/klauscfhq/signale)
