@@ -33,20 +33,6 @@ node {
     download = true
 }
 
-task installQunit(type: NpmTask) {
-    inputs.property('qunitVersion', '2.5.1')
-    outputs.dir file('node_modules/qunit')
-
-    args = ['install', "qunit@2.5.1"]
-}
-
-task runQunit(type: NodeTask, dependsOn: [compileTestKotlin2Js, populateNodeModules, installQunit]) {
-    script = file('node_modules/qunit/bin/qunit')
-    args = [projectDir.toPath().relativize(file(compileTestKotlin2Js.outputFile).toPath())]
-}
-
-test.dependsOn runQunit
-
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.kotlin
