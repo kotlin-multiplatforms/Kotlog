@@ -3,6 +3,5 @@
   "version": "0.1.0-SNAPSHOT",
   "author": "RanolP <asdhugh1@gmail.com>",
   "dependencies": {
-    "log4js": "^2.5.3"
   }
 }
