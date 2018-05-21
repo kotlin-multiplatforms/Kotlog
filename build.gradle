@@ -22,11 +22,11 @@ plugins {
 
 allprojects {
     group 'io.github.kotlin-multiplatforms'
-    version '0.1.0'
+    version '0.1.1'
 }
 
 def pomConfig = {
-    name project.name
+    name 'kotlog'
     description project.description
     inceptionYear 2018
     licenses {
@@ -51,9 +51,9 @@ def pomConfig = {
     }
 
     scm {
-        connection 'scm:git:https://github.com/RanolP/mfsjea.jvm.git'
+        connection 'scm:git:https://github.com/kotlin-multiplatforms/Kotlog.git'
         developerConnection 'scm:git:https://github.com/RanolP/mfsjea.jvm.git'
-        url 'https://github.com/RanolP/mfsjea.jvm'
+        url 'https://github.com/kotlin-multiplatforms/Kotlog'
     }
 }
 
@@ -65,7 +65,7 @@ publishing {
             artifact project(':jvm').sourcesJar
             artifact project(':jvm').dokkaJar
             groupId project.group
-            artifactId project.name
+            artifactId 'kotlog'
             version project.version
             pom.withXml {
                 def root = asNode()
@@ -83,7 +83,7 @@ model {
 
 task prepareUpload(type: Copy, dependsOn: ['build', 'generatePomFileForMyPublicationPublication']) {
     from 'jvm/build/libs'
-    into "build/upload/io/github/ranolp/${project.name}/${project.version}"
+    into "build/upload/io/github/kotlin-multiplatforms/${project.name}/${project.version}"
     include "jvm-${project.version}.jar"
     include "jvm-${project.version}-sources.jar"
     include "jvm-${project.version}-javadoc.jar"
