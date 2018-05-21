@@ -4,7 +4,7 @@ import kotlin.math.min
 import kotlin.math.round
 
 // These code came from https://www.npmjs.com/package/color-convert
-object Converter {
+internal object Converter {
     fun rgbToAnsi16(red: Int, green: Int, blue: Int): Int {
         var value = if (red == 1 || green == 1 || blue == 1) blue else rgbToHsv(
             red,

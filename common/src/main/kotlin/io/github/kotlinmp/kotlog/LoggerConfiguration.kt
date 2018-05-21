@@ -1,10 +1,12 @@
 package io.github.kotlinmp.kotlog
 
+import io.github.kotlinmp.kotlog.compat.Static
 import io.github.kotlinmp.kotlog.styling.Color
 import io.github.kotlinmp.kotlog.styling.Modifier
 import io.github.kotlinmp.kotlog.styling.removeAnsi
 
 object LoggerConfiguration {
+    @Static
     var allowedTypes: List<LogType> = listOf()
         set(value) {
             field = value
@@ -14,13 +16,19 @@ object LoggerConfiguration {
     private var labelMax: Int = 0
     private var badgeMax: Int = 0
 
+    @Static
     var logScopeName: Boolean = true
+    @Static
     var logDate: Boolean = false
+    @Static
     var logTime: Boolean = false
 
+    @Static
     var dateFormat: String = "[yyyy-MM-dd]"
+    @Static
     var timeFormat: String = "[hh:mm:ss]"
 
+    @Static
     var overridedScope: Scope? = null
 
     init {

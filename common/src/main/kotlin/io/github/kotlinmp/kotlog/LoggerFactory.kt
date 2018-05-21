@@ -1,5 +1,7 @@
 package io.github.kotlinmp.kotlog
 
+import io.github.kotlinmp.kotlog.compat.Static
+
 /**
  * The [LoggerFactory] is a utility class producing Loggers for multi platform abstraction.
  *
@@ -12,5 +14,6 @@ expect object LoggerFactory {
      * @param name The name of the logger.
      * @return logger
      */
+    @Static
     fun getLogger(name: String): Logger
 }

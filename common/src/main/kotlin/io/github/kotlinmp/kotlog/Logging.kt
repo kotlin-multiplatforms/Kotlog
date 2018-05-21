@@ -1,5 +1,7 @@
 package io.github.kotlinmp.kotlog
 
+import io.github.kotlinmp.kotlog.compat.Field
+
 /**
  * A class with logging capabilities.
  * usage examples
@@ -17,5 +19,6 @@ open class Logging(name: String) {
     /**
      * The member that performs the actual logging.
      */
+    @Field
     val logger: Logger = LoggerFactory.getLogger(name)
 }

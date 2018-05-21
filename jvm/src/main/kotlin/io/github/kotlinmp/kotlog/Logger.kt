@@ -4,13 +4,9 @@ import java.io.PrintWriter
 import java.io.StringWriter
 
 
-actual class Logger private constructor(actual val name: String) {
+actual class Logger internal constructor(actual val name: String) {
     actual companion object {
         actual val ROOT_LOGGER_NAME: String = "ROOT"
-
-        private val map = mutableMapOf<String, Logger>()
-
-        operator fun invoke(name: String): Logger = map.getOrPut(name) { Logger(name) }
     }
 
     actual fun log(

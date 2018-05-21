@@ -1,5 +1,7 @@
 package io.github.kotlinmp.kotlog.styling
 
+import io.github.kotlinmp.kotlog.compat.Field
+
 sealed class Style {
     abstract val open: String
     abstract val close: String
@@ -7,13 +9,21 @@ sealed class Style {
 
 class Modifier private constructor(openId: Int, closeId: Int) : Style() {
     companion object {
+        @Field
         val RESET = Modifier(0, 0)
+        @Field
         val BOLD = Modifier(1, 22)
+        @Field
         val DIM = Modifier(2, 22)
+        @Field
         val ITALIC = Modifier(3, 23)
+        @Field
         val UNDERLINE = Modifier(4, 24)
+        @Field
         val INVERSE = Modifier(7, 27)
+        @Field
         val HIDDEN = Modifier(8, 28)
+        @Field
         val STRIKETHROUGH = Modifier(9, 29)
     }
 
@@ -69,24 +79,38 @@ sealed class Color {
     }
 
     companion object {
+        @Field
         val UNSET = UnsettedColor
 
+        @Field
         val AQUA = RgbColor(0, 255, 255)
+        @Field
         val BLACK = RgbColor(0, 0, 0)
+        @Field
         val BLUE = RgbColor(0, 0, 255)
+        @Field
         val BROWN = RgbColor(165, 42, 42)
+        @Field
         val CYAN = RgbColor(0, 255, 255)
+        @Field
         val GOLD = RgbColor(255, 215, 0)
+        @Field
         val GRAY = RgbColor(128, 128, 128)
         // alias for human
+        @Field
         val GREY = GRAY
         val PURPLE = RgbColor(128, 0, 128)
+        @Field
         val RED = RgbColor(255, 0, 0)
+        @Field
         val WHITE = RgbColor(255, 255, 255)
+        @Field
         val YELLOW = RgbColor(255, 255, 0)
 
+        @Field
         val DARK_GRAY = RgbColor(169, 169, 169)
         // alias for human
+        @Field
         val DARK_GREY = DARK_GRAY
 
         object UnsettedColor : Color() {

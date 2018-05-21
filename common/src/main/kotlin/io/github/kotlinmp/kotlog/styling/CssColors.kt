@@ -1,8 +1,11 @@
 package io.github.kotlinmp.kotlog.styling
 
+import io.github.kotlinmp.kotlog.compat.Static
+
 
 // These colors came from https://www.npmjs.com/package/color-names
-val Color.Companion.CSS_COLORS by lazy {
+@Static
+val Color.Companion.cssColors by lazy {
     mapOf(
         "aliceblue" to RgbColor(240, 248, 255),
         "antiquewhite" to RgbColor(250, 235, 215),
