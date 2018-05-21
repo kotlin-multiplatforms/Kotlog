@@ -1,6 +1,6 @@
 package io.github.kotlinmp.kotlog
 
-operator fun String.times(int: Int): String {
+internal operator fun String.times(int: Int): String {
     var c = int
     val builder = StringBuilder()
     while (c-- > 0) {
@@ -9,9 +9,29 @@ operator fun String.times(int: Int): String {
     return builder.toString()
 }
 
+/**
+ * The scope of logger.
+ *
+ * @property name The name
+ */
 class Scope(val name: String)
 
+/**
+ * This class contains date data.
+ *
+ * @property year The year
+ * @property month The month
+ * @property day The day
+ */
 data class Date(val year: Int, val month: Int, val day: Int)
+
+/**
+ * This class contains time data.
+ *
+ * @property hour The hour
+ * @property minute The minute
+ * @property second The second
+ */
 data class Time(val hour: Int, val minute: Int, val second: Int)
 
 internal expect object PlatformDependedFeatures {

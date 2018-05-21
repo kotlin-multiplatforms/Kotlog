@@ -28,11 +28,17 @@ actual object LoggerFactory {
     @Static
     fun getLogger(kClass: KClass<*>): Logger = getLogger(kClass.java.name)
 
+    /**
+     * Return a java-compatible logger named according to the name parameter.
+     *
+     * @param name The name of the logger.
+     * @return logger
+     */
     @Static
     fun getCompatLogger(name: String): CompatLogger = javaLoggers.getOrPut(name) { CompatLogger(getLogger(name)) }
 
     /**
-     * Return a logger named corresponding to the class passed as parameter.
+     * Return a java-compatible logger named corresponding to the class passed as parameter.
      *
      * @param javaClass the returned logger will be named after class
      * @return logger
@@ -40,5 +46,10 @@ actual object LoggerFactory {
     @Static
     fun getCompatLogger(javaClass: Class<*>): CompatLogger = getCompatLogger(javaClass.name)
 
+    /**
+     * Return a logger named corresponding to the reified class.
+     *
+     * @return logger
+     */
     inline fun <reified T> getLogger(): Logger = getLogger(T::class)
 }

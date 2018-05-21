@@ -5,7 +5,13 @@ import io.github.kotlinmp.kotlog.styling.Color
 import io.github.kotlinmp.kotlog.styling.Modifier
 import io.github.kotlinmp.kotlog.styling.removeAnsi
 
+/**
+ * This object contains the configuration of whole loggers.
+ */
 object LoggerConfiguration {
+    /**
+     * Contains allowed types for logger.
+     */
     @Static
     var allowedTypes: List<LogType> = listOf()
         set(value) {
@@ -16,18 +22,41 @@ object LoggerConfiguration {
     private var labelMax: Int = 0
     private var badgeMax: Int = 0
 
+    /**
+     * Whether all loggers log the name of scope.
+     */
     @Static
     var logScopeName: Boolean = true
+
+    /**
+     * Whether all loggers log the date.
+     */
     @Static
     var logDate: Boolean = false
+
+    /**
+     * Whether all loggers log the time.
+     */
     @Static
     var logTime: Boolean = false
 
+
+    /**
+     * The format of date that similar to SimpleDateFormat
+     */
     @Static
     var dateFormat: String = "[yyyy-MM-dd]"
+
+    /**
+     * The format of time that similar to SimpleDateFormat
+     */
     @Static
     var timeFormat: String = "[hh:mm:ss]"
 
+
+    /**
+     * The overrided scope.
+     */
     @Static
     var overridedScope: Scope? = null
 

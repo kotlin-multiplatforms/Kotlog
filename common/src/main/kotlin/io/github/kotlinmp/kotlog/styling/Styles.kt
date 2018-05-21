@@ -1,28 +1,72 @@
 package io.github.kotlinmp.kotlog.styling
 
 import io.github.kotlinmp.kotlog.compat.Field
+import io.github.kotlinmp.kotlog.compat.Name
 
+/**
+ * ANSI terminal style.
+ */
 sealed class Style {
+    /**
+     * The open of style
+     */
     abstract val open: String
+    /**
+     * The close of style
+     */
     abstract val close: String
 }
 
+/**
+ * This class contains style that modifies the texts.
+ */
 class Modifier private constructor(openId: Int, closeId: Int) : Style() {
     companion object {
+        /**
+         * Resets all styles.
+         */
         @Field
         val RESET = Modifier(0, 0)
+
+        /**
+         * Makes text bolder.
+         */
         @Field
         val BOLD = Modifier(1, 22)
+
+        /**
+         * Make text lighter. (I don't know how's it works)
+         */
         @Field
         val DIM = Modifier(2, 22)
+
+        /**
+         * Makes text italic.
+         */
         @Field
         val ITALIC = Modifier(3, 23)
+
+        /**
+         * Adds underline to texts.
+         */
         @Field
         val UNDERLINE = Modifier(4, 24)
+
+        /**
+         * Swaps foreground and background colors.
+         */
         @Field
         val INVERSE = Modifier(7, 27)
+
+        /**
+         * Hides text, but note that not widely supported.
+         */
         @Field
         val HIDDEN = Modifier(8, 28)
+
+        /**
+         * Adds strikethrough, but note that not widely supported.
+         */
         @Field
         val STRIKETHROUGH = Modifier(9, 29)
     }
@@ -33,16 +77,26 @@ class Modifier private constructor(openId: Int, closeId: Int) : Style() {
 
 private const val ANSI_PREFIX = "\u001B["
 
-class ForegroundColor(color: Color) : Style() {
-    val red: Int = color.red
-    val green: Int = color.green
-    val blue: Int = color.blue
+/**
+ * This style changes the foreground color if coloring enabled.
+ *
+ * @property color The color
+ */
+class ForegroundColor(val color: Color) : Style() {
 
     override val open: String = if (color.isValid) {
         when {
-            ColorSupports.supportHexRgbColors -> "${ANSI_PREFIX}38;2;$red;$green;${blue}m"
-            ColorSupports.supportAnsi256Colors -> "${ANSI_PREFIX}38;5;${Converter.rgbToAnsi256(red, green, blue)}m"
-            ColorSupports.supportAnsi16Colors -> "$ANSI_PREFIX${Converter.rgbToAnsi16(red, green, blue)}m"
+            ColorSupports.supportHexRgbColors -> "${ANSI_PREFIX}38;2;${color.red};${color.green};${color.blue}m"
+            ColorSupports.supportAnsi256Colors -> "${ANSI_PREFIX}38;5;${Converter.rgbToAnsi256(
+                color.red,
+                color.green,
+                color.blue
+            )}m"
+            ColorSupports.supportAnsi16Colors -> "$ANSI_PREFIX${Converter.rgbToAnsi16(
+                color.red,
+                color.green,
+                color.blue
+            )}m"
             else -> ""
         }
 
@@ -51,16 +105,26 @@ class ForegroundColor(color: Color) : Style() {
     override val close: String = if (color.isValid && ColorSupports.supportColors) "\u001B[39m" else ""
 }
 
-class BackgroundColor(color: Color) : Style() {
-    val red: Int = color.red
-    val green: Int = color.green
-    val blue: Int = color.blue
+/**
+ * This style changes the background color if coloring enabled.
+ *
+ * @property color The color
+ */
+class BackgroundColor(val color: Color) : Style() {
 
     override val open: String = if (color.isValid) {
         when {
-            ColorSupports.supportHexRgbColors -> "${ANSI_PREFIX}38;2;$red;$green;${blue}m"
-            ColorSupports.supportAnsi256Colors -> "${ANSI_PREFIX}38;5;${Converter.rgbToAnsi256(red, green, blue) + 10}m"
-            ColorSupports.supportAnsi16Colors -> "$ANSI_PREFIX${Converter.rgbToAnsi16(red, green, blue) + 10}m"
+            ColorSupports.supportHexRgbColors -> "${ANSI_PREFIX}38;2;$${color.red};$${color.green};${color.blue}m"
+            ColorSupports.supportAnsi256Colors -> "${ANSI_PREFIX}38;5;${Converter.rgbToAnsi256(
+                color.red,
+                color.green,
+                color.blue
+            ) + 10}m"
+            ColorSupports.supportAnsi16Colors -> "$ANSI_PREFIX${Converter.rgbToAnsi16(
+                color.red,
+                color.green,
+                color.blue
+            ) + 10}m"
             else -> ""
         }
 
@@ -69,83 +133,144 @@ class BackgroundColor(color: Color) : Style() {
     override val close: String = if (color.isValid && ColorSupports.supportColors) "\u001B[49m" else ""
 }
 
-sealed class Color {
-    abstract val red: Int
-    abstract val green: Int
-    abstract val blue: Int
-
+/**
+ * This class contains sRGB colors.
+ *
+ * @property red The red component.
+ * @property green The green component.
+ * @property blue The blue component.
+ */
+class Color(val red: Int, val green: Int, val blue: Int) {
+    /**
+     * Whether all components are in the correct sRGB range
+     */
     val isValid by lazy {
         red in 0..255 && green in 0..255 && blue in 0..255
     }
 
     companion object {
-        @Field
-        val UNSET = UnsettedColor
 
+        /**
+         * Make color from the hex code
+         */
+        @Name("ofHex")
+        fun invoke(hex: String): Color {
+            var data = hex
+            if (hex[0] == '#') {
+                data = hex.substring(1)
+            }
+            if (data.length != 6) {
+                throw Exception("color data must be 6 hex digits")
+            }
+            try {
+                val converted = data.toInt(16)
+                return Color(converted shr 16 and 255, converted shr 8 and 255, converted shr 0 and 255)
+            } catch (exception: NumberFormatException) {
+                throw exception
+            }
+        }
+
+        /**
+         * Meaning no color
+         */
         @Field
-        val AQUA = RgbColor(0, 255, 255)
+        val UNSET = Color(-1, -1, -1)
+
+        /**
+         * The color aqua
+         */
         @Field
-        val BLACK = RgbColor(0, 0, 0)
+        val AQUA = Color(0, 255, 255)
+
+        /**
+         * The color black
+         */
         @Field
-        val BLUE = RgbColor(0, 0, 255)
+        val BLACK = Color(0, 0, 0)
+
+        /**
+         * The color blue
+         */
         @Field
-        val BROWN = RgbColor(165, 42, 42)
+        val BLUE = Color(0, 0, 255)
+
+        /**
+         * The color brown
+         */
         @Field
-        val CYAN = RgbColor(0, 255, 255)
+        val BROWN = Color(165, 42, 42)
+
+        /**
+         * The color cyan
+         */
         @Field
-        val GOLD = RgbColor(255, 215, 0)
+        val CYAN = Color(0, 255, 255)
+
+        /**
+         * The color gold
+         */
         @Field
-        val GRAY = RgbColor(128, 128, 128)
-        // alias for human
+        val GOLD = Color(255, 215, 0)
+
+        /**
+         * The color gray
+         */
+        @Field
+        val GRAY = Color(128, 128, 128)
+
+        /**
+         * The alias of [GRAY] for human
+         */
         @Field
         val GREY = GRAY
-        val PURPLE = RgbColor(128, 0, 128)
-        @Field
-        val RED = RgbColor(255, 0, 0)
-        @Field
-        val WHITE = RgbColor(255, 255, 255)
-        @Field
-        val YELLOW = RgbColor(255, 255, 0)
 
+        /**
+         * The color purple
+         */
         @Field
-        val DARK_GRAY = RgbColor(169, 169, 169)
-        // alias for human
+        val PURPLE = Color(128, 0, 128)
+
+        /**
+         * The color red
+         */
+        @Field
+        val RED = Color(255, 0, 0)
+
+        /**
+         * The color white
+         */
+        @Field
+        val WHITE = Color(255, 255, 255)
+
+        /**
+         * The color yellow
+         */
+        @Field
+        val YELLOW = Color(255, 255, 0)
+
+
+        /**
+         * The color dark gray
+         */
+        @Field
+        val DARK_GRAY = Color(169, 169, 169)
+
+        /**
+         * The alias of [DARK_GRAY] for human
+         */
         @Field
         val DARK_GREY = DARK_GRAY
-
-        object UnsettedColor : Color() {
-            override val red: Int = -1
-            override val green: Int = -1
-            override val blue: Int = -1
-        }
     }
 
+    /**
+     * Converts color to [ForegroundColor].
+     */
+    @get:Name("toForegroundColor")
     val foreground: ForegroundColor by lazy { ForegroundColor(this) }
+
+    /**
+     * Converts color to [BackgroundColor].
+     */
+    @get:Name("toBackgroundColor")
     val background: BackgroundColor by lazy { BackgroundColor(this) }
-}
-
-class RgbColor(override val red: Int, override val green: Int, override val blue: Int) : Color()
-
-class HexColor(color: String) : Color() {
-    override val red: Int
-    override val green: Int
-    override val blue: Int
-
-    init {
-        var data = color
-        if (color[0] == '#') {
-            data = color.substring(1)
-        }
-        if (data.length != 6) {
-            throw Exception("color data must be 6 hex digits")
-        }
-        try {
-            val converted = data.toInt(16)
-            this.red = converted shr 16 and 255
-            this.green = converted shr 8 and 255
-            this.blue = converted shr 0 and 255
-        } catch (exception: NumberFormatException) {
-            throw exception
-        }
-    }
 }

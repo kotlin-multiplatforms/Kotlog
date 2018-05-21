@@ -2,6 +2,11 @@ package io.github.kotlinmp.kotlog.compat
 
 import io.github.kotlinmp.kotlog.*
 
+/**
+ * This class uses to log some messages. but it's compatible java.
+ *
+ * @property logger Actual logger
+ */
 class CompatLogger(val logger: Logger) {
 
     /**
