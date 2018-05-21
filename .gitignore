@@ -6,3 +6,6 @@ build/
 .idea/
 out/
 *.iml
+
+# Node modules
+js/node_modules
