@@ -12,3 +12,22 @@ cache:
   - "$HOME/.sonar/cache"
   - "$HOME/.gradle"
   - ".gradle"
+before_deploy: "./gradlew prepareUpload"
+deploy:
+- provider: releases
+  api_key:
+    secure: sEdgLinAbuj7A9HgMNyyrrWGq+1dN7/cUSqUo8nKpl3XTMG0uMgb8OOiUr0pAkD/5ogjA8g1XGMZzxqTg9MIXG/GZpMGPdnwB40Zx97MXnjyFG8oeosvfAkna+PSbRJPRDPUFgcA4SmPJfzXL27omyGZYGgN6u2fJizyZlj1FWPhsxMHcntlEjuJ+sqOWqP4nB2AsdH2nbrM1km7mrb9wnghs/K0ff+1MTtWtQGRO9f1V6HUqH3FClH2mhdEVtFBQU7hMUhCAhLp1n5zkbfY7YIv9Lz61VvgkrwCO8L5JqQxAViokhkr6kTw3O/KelSyFcCVfLTly9MQG+lyCtK55K/nVMe+SePRJZ0EEI53Y9ZpZEzXwy/4vx9JpAk0jHn8GItSexY1IjxWs6RWf2nstDpCFk2Ntr5KxFbgfwV9xOSCKsWJJxFSfUZ6gjOzt1X7w3tF3vAOw6PHSKykqkLtqkjQBlpYrLfXiGS+hNJz8N7ZD/g0ETiRDlpSBrj+Pv8fAHz+eMnazumfiwfDwO7sv7rw2WRmluQS2YaNtDDCexGfEjp3kAJDW2GF3iCh4ZyFWcavo2J1788f0RqZTtdksxPWId7D580caFu5vVWWXQ6rKAI9p3c5gXU7bDnS6vF6iZ0RCmJkztkhAQVpxCJ+eSHHl4KOc4Ouey5NmFDGjL4=
+  file: jvm/build/libs/kotlog.jar
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: kotlin-multiplatforms/Kotlog
+- provider: bintray
+  file: .bintraydescriptor.json
+  user: ranolp
+  key:
+    secure: "plc4jZyz02aYKf8gTo3hrj1PIukkSczlnHJw7uch8XJinJjTrkfwy4IGQ5ZuO4o0C4//cPXsey8O/iknhF9qG/fH4besMApuqL+yWOeW19QKyiamCR7F/4+LbzG5Ai+InpSJWaGlDOYEqJS6K0qZSkXtg93dw4kKqx1qc2c1oQ14cdVvETtU1D6QYnihQt9vYs+ogid6IZfY4iMGy0YDj90DN8F/IzRxcDNdCUl2dn6Xfh9+QzToIt2yUB6guc6Zvz4VpBrPJJdyBxUE0C93WoZBmuTomBG0+Xr/oqs8rYWGIUI0Yg7o98wTUsisyXnbagxhVeYUzbW8CVzkilklQJe+Fo8Os+Hc5dw2tigC1FTDoO3h5bTRX8vIiNIEQq2ocbTOlzlsU24dg0JL9GB2fNVkJbFaj4qfVGHUAtnQZREuR2zQv8fLHtPPfxNESJHOhN07Zunlhjx0iN/XAGtbzvdGu40SXmebVlamnBNXONhHWLt+G+Jm+rWk3abSVuTJ0RxKmU8nZb4gkI6yD12h/+ZPfuY5QRGEzd2CMbdVyuXldpWkUokFOL2y0ySGUX98HAeVZXD/3fP1v/gMHy8/UzVchZ/lUHfn1y/RDfsM+SpdIxtkHvXxbVVcmr+AiIcM3QR3L3Mt3lNXLn7uq0wT/1ze1Z7NPMP9zcEoURrXDMQ="
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: kotlin-multiplatforms/Kotlog
