@@ -30,6 +30,12 @@ compileTestKotlin {
 
 sourceCompatibility = '1.8'
 
+jar {
+    project(':common').configurations.archives.allArtifacts.each {
+        from zipTree(it.file.absolutePath)
+    }
+}
+
 shadowJar {
     classifier = null
     version = null
