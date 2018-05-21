@@ -22,7 +22,7 @@ plugins {
 
 allprojects {
     group 'io.github.kotlin-multiplatforms'
-    version '0.1.2'
+    version '0.1.3'
 }
 
 def pomConfig = {
@@ -83,18 +83,17 @@ publishing {
 
 model {
     tasks.generatePomFileForMyPublicationPublication {
-        destination = file("${rootDir}/jvm/build/libs/${project.name}-${project.version}.pom")
+        destination = file("${rootDir}/jvm/build/libs/kotlog-${project.version}.pom")
     }
 }
 
 task prepareUpload(type: Copy, dependsOn: ['build', 'generatePomFileForMyPublicationPublication']) {
     from 'jvm/build/libs'
-    into "build/upload/io/github/kotlin-multiplatforms/${project.name}/${project.version}"
+    into "build/upload/io/github/kotlin-multiplatforms/kotlog/${project.version}"
     include "jvm-${project.version}.jar"
     include "jvm-${project.version}-sources.jar"
     include "jvm-${project.version}-javadoc.jar"
     include "Kotlog-${project.version}.pom"
-    rename "Kotlog-${project.version}.pom", "kotlog-${project.version}.pom"
     rename "jvm-${project.version}.jar", "kotlog-${project.version}.jar"
     rename "jvm-${project.version}-sources.jar", "kotlog-${project.version}-sources.jar"
     rename "jvm-${project.version}-javadoc.jar", "kotlog-${project.version}-javadoc.jar"
