@@ -5,7 +5,8 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-common', version: kotlin_version
-    testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-annotations-common', version: kotlin_version
-    testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-common', version: kotlin_version
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-common', version: kotlin_version
+
+    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-test-annotations-common', version: kotlin_version
+    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-test-common', version: kotlin_version
 }
