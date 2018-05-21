@@ -12,12 +12,12 @@ cache:
   - "$HOME/.sonar/cache"
   - "$HOME/.gradle"
   - ".gradle"
-before_deploy: "./gradlew prepareUpload"
+before_deploy: "./gradlew build & ./gradlew prepareUpload"
 deploy:
 - provider: releases
   api_key:
     secure: sEdgLinAbuj7A9HgMNyyrrWGq+1dN7/cUSqUo8nKpl3XTMG0uMgb8OOiUr0pAkD/5ogjA8g1XGMZzxqTg9MIXG/GZpMGPdnwB40Zx97MXnjyFG8oeosvfAkna+PSbRJPRDPUFgcA4SmPJfzXL27omyGZYGgN6u2fJizyZlj1FWPhsxMHcntlEjuJ+sqOWqP4nB2AsdH2nbrM1km7mrb9wnghs/K0ff+1MTtWtQGRO9f1V6HUqH3FClH2mhdEVtFBQU7hMUhCAhLp1n5zkbfY7YIv9Lz61VvgkrwCO8L5JqQxAViokhkr6kTw3O/KelSyFcCVfLTly9MQG+lyCtK55K/nVMe+SePRJZ0EEI53Y9ZpZEzXwy/4vx9JpAk0jHn8GItSexY1IjxWs6RWf2nstDpCFk2Ntr5KxFbgfwV9xOSCKsWJJxFSfUZ6gjOzt1X7w3tF3vAOw6PHSKykqkLtqkjQBlpYrLfXiGS+hNJz8N7ZD/g0ETiRDlpSBrj+Pv8fAHz+eMnazumfiwfDwO7sv7rw2WRmluQS2YaNtDDCexGfEjp3kAJDW2GF3iCh4ZyFWcavo2J1788f0RqZTtdksxPWId7D580caFu5vVWWXQ6rKAI9p3c5gXU7bDnS6vF6iZ0RCmJkztkhAQVpxCJ+eSHHl4KOc4Ouey5NmFDGjL4=
-  file: jvm/build/libs/kotlog.jar
+  file: "jvm/build/libs/kotlog.jar"
   skip_cleanup: true
   on:
     tags: true
