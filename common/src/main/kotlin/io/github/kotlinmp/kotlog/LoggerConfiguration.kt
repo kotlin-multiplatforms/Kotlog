@@ -111,6 +111,6 @@ object LoggerConfiguration {
                 logType.foreground.close + logType.background.close +
                 " " * (labelMax - logType.label.length) + " "
 
-    internal fun makeIndent(prefix: String): String = "" * (removeAnsi(prefix).length + badgeMax - 1) +
+    internal fun makeIndent(prefix: String): String = " " * (removeAnsi(prefix).length + badgeMax - 1) +
             Color.DARK_GRAY.foreground.open + "│ " + Color.DARK_GRAY.foreground.close
 }
