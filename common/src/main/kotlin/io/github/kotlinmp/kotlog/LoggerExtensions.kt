@@ -11,7 +11,7 @@ package io.github.kotlinmp.kotlog
 fun Logger.debug(
     message: String,
     throwable: Throwable? = null,
-    type: LogType? = LogType.DEBUG,
+    type: LogType = LogType.DEBUG,
     vararg arguments: Any?
 ) = log(LogLevel.DEBUG, message, throwable, type, *arguments)
 
@@ -26,7 +26,7 @@ fun Logger.debug(
 fun Logger.error(
     message: String,
     throwable: Throwable? = null,
-    type: LogType? = LogType.ERROR,
+    type: LogType = LogType.ERROR,
     vararg arguments: Any?
 ) = log(LogLevel.ERROR, message, throwable, type, *arguments)
 
@@ -41,7 +41,7 @@ fun Logger.error(
 fun Logger.info(
     message: String,
     throwable: Throwable? = null,
-    type: LogType? = LogType.INFO,
+    type: LogType = LogType.INFO,
     vararg arguments: Any?
 ) = log(LogLevel.INFO, message, throwable, type, *arguments)
 
@@ -56,7 +56,7 @@ fun Logger.info(
 fun Logger.trace(
     message: String,
     throwable: Throwable? = null,
-    type: LogType? = LogType.TRACE,
+    type: LogType = LogType.TRACE,
     vararg arguments: Any?
 ) = log(LogLevel.TRACE, message, throwable, type, *arguments)
 
@@ -71,7 +71,7 @@ fun Logger.trace(
 fun Logger.warn(
     message: String,
     throwable: Throwable? = null,
-    type: LogType? = LogType.WARN,
+    type: LogType = LogType.WARN,
     vararg arguments: Any?
 ) = log(LogLevel.WARN, message, throwable, type, *arguments)
 
@@ -84,55 +84,50 @@ fun Logger.warn(
  */
 fun Logger.debug(
     throwable: Throwable? = null,
-    type: LogType? = LogType.DEBUG,
+    type: LogType = LogType.DEBUG,
     vararg arguments: Any?,
     message: () -> Any?
-) =
-    debug(message().toString(), throwable, type, *arguments)
+) = debug(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.error] method except that the message evaluated lazy.
  */
 fun Logger.error(
     throwable: Throwable? = null,
-    type: LogType? = LogType.ERROR,
+    type: LogType = LogType.ERROR,
     vararg arguments: Any?,
     message: () -> Any?
-) =
-    error(message().toString(), throwable, type, *arguments)
+) = error(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.info] method except that the message evaluated lazy.
  */
 fun Logger.info(
     throwable: Throwable? = null,
-    type: LogType? = LogType.INFO,
+    type: LogType = LogType.INFO,
     vararg arguments: Any?,
     message: () -> Any?
-) =
-    info(message().toString(), throwable, type, *arguments)
+) = info(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.trace] method except that the message evaluated lazy.
  */
 fun Logger.trace(
     throwable: Throwable? = null,
-    type: LogType? = LogType.TRACE,
+    type: LogType = LogType.TRACE,
     vararg arguments: Any?,
     message: () -> Any?
-) =
-    trace(message().toString(), throwable, type, *arguments)
+) = trace(message().toString(), throwable, type, *arguments)
 
 /**
  * This method is similar to [Logger.warn] method except that the message evaluated lazy.
  */
 fun Logger.warn(
     throwable: Throwable? = null,
-    type: LogType? = LogType.WARN,
+    type: LogType = LogType.WARN,
     vararg arguments: Any?,
     message: () -> Any?
-) =
-    warn(message().toString(), throwable, type, *arguments)
+) = warn(message().toString(), throwable, type, *arguments)
 
 
 /**
@@ -140,12 +135,11 @@ fun Logger.warn(
  */
 fun Logger.error(
     throwable: Throwable,
-    type: LogType? = LogType.ERROR,
+    type: LogType = LogType.ERROR,
     vararg arguments: Any?
-) =
-    error(
-        PlatformDependedFeatures.getErrorName(throwable) + ": " + (throwable.message ?: ""),
-        throwable,
-        type,
-        *arguments
-    )
+) = error(
+    PlatformDependedFeatures.getErrorName(throwable) + ": " + (throwable.message ?: ""),
+    throwable,
+    type,
+    *arguments
+)
