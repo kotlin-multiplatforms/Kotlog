@@ -30,17 +30,26 @@ class Logger internal constructor(val name: String) {
         level: LogLevel,
         message: String,
         throwable: Throwable? = null,
-        type: LogType? = null,
+        type: LogType = LogType.LOG,
         vararg arguments: Any?
     ) {
+        if (type != LogType.LOG && type !in LoggerConfiguration.allowedTypes) {
+            return
+        }
         val prefix = LoggerConfiguration.makePrefix(this)
-        val typeString = (type?.let(LoggerConfiguration::beautify) ?: "")
+        val typeString = LoggerConfiguration.beautify(
+            if (type !in LoggerConfiguration.allowedTypes) {
+                LogType.LOG
+            } else {
+                type
+            }
+        )
         val formattedMessages =
             (if (arguments.isEmpty()) message
             else PlatformDependedFeatures.format(message, *arguments)).split('\n')
         println(prefix + typeString + formattedMessages[0])
         formattedMessages.drop(1).forEach {
-            println(LoggerConfiguration.makeIndent(prefix) + it)
+            println(LoggerConfiguration.makeIndent(prefix + typeString) + it)
         }
         if (throwable != null) {
             PlatformDependedFeatures.makeStacktrace(throwable).forEach {

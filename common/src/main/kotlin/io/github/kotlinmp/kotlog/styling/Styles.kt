@@ -219,10 +219,21 @@ class Color(val red: Int, val green: Int, val blue: Int) {
         val GRAY = Color(128, 128, 128)
 
         /**
+         * The color green
+         */
+        @Field
+        val GREEN = Color(0, 128, 0)
+
+        /**
          * The alias of [GRAY] for human
          */
         @Field
         val GREY = GRAY
+
+        /**
+         * The color magenta
+         */
+        val MAGENTA = Color(255, 0, 255)
 
         /**
          * The color purple

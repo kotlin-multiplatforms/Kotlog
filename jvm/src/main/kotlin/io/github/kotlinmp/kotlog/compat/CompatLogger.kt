@@ -29,7 +29,7 @@ class CompatLogger(val logger: Logger) {
         level: LogLevel,
         message: String,
         throwable: Throwable? = null,
-        type: LogType? = null,
+        type: LogType = LogType.LOG,
         vararg arguments: Any?
     ) = logger.log(level, message, throwable, type, *arguments)
 
@@ -45,7 +45,7 @@ class CompatLogger(val logger: Logger) {
     fun debug(
         message: String,
         throwable: Throwable? = null,
-        type: LogType? = LogType.DEBUG,
+        type: LogType = LogType.DEBUG,
         vararg arguments: Any?
     ) = logger.debug(message, throwable, type, *arguments)
 
@@ -61,7 +61,7 @@ class CompatLogger(val logger: Logger) {
     fun error(
         message: String,
         throwable: Throwable? = null,
-        type: LogType? = LogType.ERROR,
+        type: LogType = LogType.ERROR,
         vararg arguments: Any?
     ) = logger.error(message, throwable, type, *arguments)
 
@@ -77,7 +77,7 @@ class CompatLogger(val logger: Logger) {
     fun info(
         message: String,
         throwable: Throwable? = null,
-        type: LogType? = LogType.INFO,
+        type: LogType = LogType.INFO,
         vararg arguments: Any?
     ) = logger.info(message, throwable, type, *arguments)
 
@@ -93,7 +93,7 @@ class CompatLogger(val logger: Logger) {
     fun trace(
         message: String,
         throwable: Throwable? = null,
-        type: LogType? = LogType.TRACE,
+        type: LogType = LogType.TRACE,
         vararg arguments: Any?
     ) = logger.trace(message, throwable, type, *arguments)
 
@@ -109,7 +109,7 @@ class CompatLogger(val logger: Logger) {
     fun warn(
         message: String,
         throwable: Throwable? = null,
-        type: LogType? = LogType.WARN,
+        type: LogType = LogType.WARN,
         vararg arguments: Any?
     ) = logger.warn(message, throwable, type, *arguments)
 
@@ -123,7 +123,7 @@ class CompatLogger(val logger: Logger) {
     @JvmOverloads
     fun debug(
         throwable: Throwable? = null,
-        type: LogType? = LogType.DEBUG,
+        type: LogType = LogType.DEBUG,
         vararg arguments: Any?,
         message: () -> Any?
     ) = logger.debug(throwable, type, *arguments, message = message)
@@ -134,7 +134,7 @@ class CompatLogger(val logger: Logger) {
     @JvmOverloads
     fun error(
         throwable: Throwable? = null,
-        type: LogType? = LogType.ERROR,
+        type: LogType = LogType.ERROR,
         vararg arguments: Any?,
         message: () -> Any?
     ) = logger.error(throwable, type, *arguments, message = message)
@@ -145,7 +145,7 @@ class CompatLogger(val logger: Logger) {
     @JvmOverloads
     fun info(
         throwable: Throwable? = null,
-        type: LogType? = LogType.INFO,
+        type: LogType = LogType.INFO,
         vararg arguments: Any?,
         message: () -> Any?
     ) = logger.info(throwable, type, *arguments, message = message)
@@ -156,7 +156,7 @@ class CompatLogger(val logger: Logger) {
     @JvmOverloads
     fun trace(
         throwable: Throwable? = null,
-        type: LogType? = LogType.TRACE,
+        type: LogType = LogType.TRACE,
         vararg arguments: Any?,
         message: () -> Any?
     ) = logger.trace(throwable, type, *arguments, message = message)
@@ -167,7 +167,7 @@ class CompatLogger(val logger: Logger) {
     @JvmOverloads
     fun warn(
         throwable: Throwable? = null,
-        type: LogType? = LogType.WARN,
+        type: LogType = LogType.WARN,
         vararg arguments: Any?,
         message: () -> Any?
     ) = logger.warn(throwable, type, *arguments, message = message)
@@ -178,7 +178,7 @@ class CompatLogger(val logger: Logger) {
     @JvmOverloads
     fun error(
         throwable: Throwable,
-        type: LogType? = LogType.ERROR,
+        type: LogType = LogType.ERROR,
         vararg arguments: Any?
     ) = logger.error(throwable, type, *arguments)
 }
