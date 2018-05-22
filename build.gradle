@@ -83,11 +83,12 @@ publishing {
 
 model {
     tasks.generatePomFileForMyPublicationPublication {
-        destination = file("${rootDir}/jvm/build/libs/kotlog-${project.version}.pom")
+        destination = file("${buildDir}/libs/kotlog-${project.version}.pom")
     }
 }
 
-task prepareUpload(type: Copy, dependsOn: ['build', 'generatePomFileForMyPublicationPublication']) {
+
+task prepareUpload(type: Copy, dependsOn: [':jvm:build', 'generatePomFileForMyPublicationPublication']) {
     from 'jvm/build/libs'
     into "build/upload/io/github/kotlin-multiplatforms/kotlog/${project.version}"
     include "jvm-${project.version}.jar"

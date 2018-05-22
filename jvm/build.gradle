@@ -39,7 +39,6 @@ jar {
 shadowJar {
     classifier = null
     version = null
-    baseName = 'kotlog'
 }
 
 task sourcesJar(type: Jar) {
