@@ -88,7 +88,7 @@ model {
 }
 
 
-task prepareUpload(type: Copy, dependsOn: ['build', 'generatePomFileForMyPublicationPublication']) {
+task prepareUpload(type: Copy, dependsOn: [':jvm:build', 'generatePomFileForMyPublicationPublication']) {
     from 'jvm/build/libs'
     into "build/upload/io/github/kotlin-multiplatforms/kotlog/${project.version}"
     include "jvm-${project.version}.jar"
