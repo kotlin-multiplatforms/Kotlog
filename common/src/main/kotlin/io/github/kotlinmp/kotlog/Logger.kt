@@ -49,7 +49,7 @@ class Logger internal constructor(val name: String) {
             else PlatformDependedFeatures.format(message, *arguments)).split('\n')
         println(prefix + typeString + formattedMessages[0])
         formattedMessages.drop(1).forEach {
-            println(LoggerConfiguration.makeIndent(prefix + typeString) + it)
+            println(LoggerConfiguration.makeIndent(prefix + typeString).substring(2) + it)
         }
         if (throwable != null) {
             PlatformDependedFeatures.makeStacktrace(throwable).forEach {
