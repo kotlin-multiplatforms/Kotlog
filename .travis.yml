@@ -12,7 +12,7 @@ cache:
   - "$HOME/.sonar/cache"
   - "$HOME/.gradle"
   - ".gradle"
-before_deploy: "./gradlew build & ./gradlew prepareUpload"
+before_deploy: "./gradlew prepareUpload"
 deploy:
 - provider: releases
   api_key:

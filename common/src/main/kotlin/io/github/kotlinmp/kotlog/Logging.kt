@@ -20,5 +20,5 @@ open class Logging(name: String) {
      * The member that performs the actual logging.
      */
     @Field
-    val logger: Logger = LoggerFactory.getLogger(name)
+    val logger: Logger = CommonLoggerFactory.getLogger(name)
 }

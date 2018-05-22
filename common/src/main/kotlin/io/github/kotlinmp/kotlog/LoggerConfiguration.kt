@@ -4,6 +4,7 @@ import io.github.kotlinmp.kotlog.compat.Static
 import io.github.kotlinmp.kotlog.styling.Color
 import io.github.kotlinmp.kotlog.styling.Modifier
 import io.github.kotlinmp.kotlog.styling.removeAnsi
+import kotlin.math.max
 
 /**
  * This object contains the configuration of whole loggers.
@@ -21,12 +22,13 @@ object LoggerConfiguration {
         }
     private var labelMax: Int = 0
     private var badgeMax: Int = 0
+    private var loggerMax: Int = 0
 
     /**
-     * Whether all loggers log the name of scope.
+     * Whether all loggers log the name of logger.
      */
     @Static
-    var logScopeName: Boolean = true
+    var logLoggetName: Boolean = true
 
     /**
      * Whether all loggers log the date.
@@ -53,13 +55,6 @@ object LoggerConfiguration {
     @Static
     var timeFormat: String = "[hh:mm:ss]"
 
-
-    /**
-     * The overrided scope.
-     */
-    @Static
-    var overridedScope: Scope? = null
-
     init {
         allowedTypes = listOf(
             LogType.INFO,
@@ -70,7 +65,7 @@ object LoggerConfiguration {
         )
     }
 
-    internal fun makePrefix(): String {
+    internal fun makePrefix(logger: Logger): String {
         val now = PlatformDependedFeatures.currentDateTime()
         return (if (logDate) {
             val date = now.first
@@ -88,8 +83,10 @@ object LoggerConfiguration {
                 .replace("ss", time.second.toString().padStart(2, '0')).replace("s", time.second.toString()) + " "
         } else {
             ""
-        } + if (logScopeName) {
-            (PlatformDependedFeatures.getCurrentScope()?.name ?: overridedScope?.name ?: "Kotlog") + " "
+        } + if (logLoggetName) {
+            val loggerName = "${logger.name} "
+            loggerMax = max(loggerMax, loggerName.length)
+            loggerName.padEnd(loggerMax, ' ')
         } else {
             ""
         }).let {
@@ -114,6 +111,6 @@ object LoggerConfiguration {
                 logType.foreground.close + logType.background.close +
                 " " * (labelMax - logType.label.length) + " "
 
-    internal fun makeStackTrace(prefix: String, message: String): String =
-        Color.DARK_GRAY.foreground.open + " " * (removeAnsi(prefix).length + badgeMax + 1) + message + Color.DARK_GRAY.foreground.close
+    internal fun makeIndent(prefix: String): String = "" * (removeAnsi(prefix).length + badgeMax - 1) +
+            Color.DARK_GRAY.foreground.open + "│ " + Color.DARK_GRAY.foreground.close
 }

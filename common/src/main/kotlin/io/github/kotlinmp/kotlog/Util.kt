@@ -10,13 +10,6 @@ internal operator fun String.times(int: Int): String {
 }
 
 /**
- * The scope of logger.
- *
- * @property name The name
- */
-class Scope(val name: String)
-
-/**
  * This class contains date data.
  *
  * @property year The year
@@ -35,9 +28,11 @@ data class Date(val year: Int, val month: Int, val day: Int)
 data class Time(val hour: Int, val minute: Int, val second: Int)
 
 internal expect object PlatformDependedFeatures {
-    fun getCurrentScope(): Scope?
-
     fun currentDateTime(): Pair<Date, Time>
 
     fun getErrorName(throwable: Throwable): String
+
+    fun makeStacktrace(throwable: Throwable): List<String>
+
+    fun format(string: String, vararg arguments: Any?): String
 }
