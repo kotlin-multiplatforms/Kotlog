@@ -87,6 +87,7 @@ model {
     }
 }
 
+
 task prepareUpload(type: Copy, dependsOn: ['build', 'generatePomFileForMyPublicationPublication']) {
     from 'jvm/build/libs'
     into "build/upload/io/github/kotlin-multiplatforms/kotlog/${project.version}"

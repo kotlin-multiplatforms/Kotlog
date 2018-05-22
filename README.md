@@ -26,8 +26,8 @@ Maven
 
 <dependency>
   <groupId>com.github.kotlin-multiplatforms.Kotlog</groupId>
-  <artifactId>common</artifactId>
-  <version>-SNAPSHOT</version>
+  <artifactId>jvm</artifactId>
+  <version>bf8c5a622b</version>
 </dependency>
 ```
 
@@ -40,7 +40,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.kotlin-multiplatforms.Kotlog:common:-SNAPSHOT'
+   implementation 'com.github.kotlin-multiplatforms.Kotlog:jvm:bf8c5a622b'
 }
 ```
 

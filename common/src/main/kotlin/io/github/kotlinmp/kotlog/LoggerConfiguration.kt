@@ -106,9 +106,12 @@ object LoggerConfiguration {
                 logType.badge +
                 " " * (badgeMax - logType.badge.length) + " " +
                 logType.background.close + logType.foreground.close +
-                Modifier.UNDERLINE.open + logType.foreground.open + logType.background.open +
-                logType.label + " " +
-                Modifier.UNDERLINE.close + logType.foreground.close + logType.background.close +
+                Modifier.UNDERLINE.open +
+                logType.foreground.open + logType.background.open +
+                logType.label +
+                Modifier.UNDERLINE.close +
+                " " +
+                logType.foreground.close + logType.background.close +
                 " " * (labelMax - logType.label.length) + " "
 
     internal fun makeStackTrace(prefix: String, message: String): String =
