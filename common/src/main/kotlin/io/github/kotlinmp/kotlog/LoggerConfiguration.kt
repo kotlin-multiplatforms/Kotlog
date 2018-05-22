@@ -22,13 +22,13 @@ object LoggerConfiguration {
         }
     private var labelMax: Int = 0
     private var badgeMax: Int = 0
-    private var scopeMax: Int = 0
+    private var loggerMax: Int = 0
 
     /**
-     * Whether all loggers log the name of scope.
+     * Whether all loggers log the name of logger.
      */
     @Static
-    var logScopeName: Boolean = true
+    var logLoggetName: Boolean = true
 
     /**
      * Whether all loggers log the date.
@@ -55,13 +55,6 @@ object LoggerConfiguration {
     @Static
     var timeFormat: String = "[hh:mm:ss]"
 
-
-    /**
-     * The overrided scope.
-     */
-    @Static
-    var overridedScope: Scope? = null
-
     init {
         allowedTypes = listOf(
             LogType.INFO,
@@ -72,7 +65,7 @@ object LoggerConfiguration {
         )
     }
 
-    internal fun makePrefix(): String {
+    internal fun makePrefix(logger: Logger): String {
         val now = PlatformDependedFeatures.currentDateTime()
         return (if (logDate) {
             val date = now.first
@@ -90,10 +83,10 @@ object LoggerConfiguration {
                 .replace("ss", time.second.toString().padStart(2, '0')).replace("s", time.second.toString()) + " "
         } else {
             ""
-        } + if (logScopeName) {
-            val scopeName = (PlatformDependedFeatures.getCurrentScope()?.name ?: overridedScope?.name ?: "Kotlog") + " "
-            scopeMax = max(scopeMax, scopeName.length)
-            scopeName.padEnd(scopeMax, ' ')
+        } + if (logLoggetName) {
+            val loggerName = "${logger.name} "
+            loggerMax = max(loggerMax, loggerName.length)
+            loggerName.padEnd(loggerMax, ' ')
         } else {
             ""
         }).let {

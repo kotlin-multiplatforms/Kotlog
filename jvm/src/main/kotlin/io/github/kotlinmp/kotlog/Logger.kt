@@ -18,7 +18,7 @@ actual class Logger internal constructor(actual val name: String) {
         type: LogType?,
         vararg arguments: Any?
     ) {
-        val prefix = LoggerConfiguration.makePrefix()
+        val prefix = LoggerConfiguration.makePrefix(this)
         val typeString = (type?.let(LoggerConfiguration::beautify) ?: "")
         val formattedMessages = (if (arguments.isEmpty()) message else message.format(*arguments)).split('\n')
         println(prefix + typeString + formattedMessages[0])

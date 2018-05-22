@@ -3,10 +3,6 @@ package io.github.kotlinmp.kotlog
 import java.time.LocalDateTime
 
 internal actual object PlatformDependedFeatures {
-    actual fun getCurrentScope(): Scope? {
-        return Scope(Thread.currentThread().name)
-    }
-
     actual fun currentDateTime(): Pair<Date, Time> {
         val now = LocalDateTime.now()
 
