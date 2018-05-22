@@ -1,22 +1,30 @@
 package io.github.kotlinmp.kotlog
 
 import io.github.kotlinmp.kotlog.compat.CompatLogger
-import io.github.kotlinmp.kotlog.compat.Static
 import kotlin.reflect.KClass
 
-actual object LoggerFactory {
+/**
+ *  This object manufacture Logger instances by name.
+ */
+object JavaLoggerFactory {
     private val loggers = mutableMapOf<String, Logger>()
     private val javaLoggers = mutableMapOf<String, CompatLogger>()
 
-    actual fun getLogger(name: String): Logger = loggers.getOrPut(name) { Logger(name) }
-
+    /**
+     * Return a logger named according to the name parameter
+     *
+     * @param name the name of the logger
+     * @return logger
+     */
+    @JvmStatic
+    fun getLogger(name: String): Logger = CommonLoggerFactory.getLogger(name)
     /**
      * Return a logger named corresponding to the class passed as parameter.
      *
      * @param javaClass the returned logger will be named after class
      * @return logger
      */
-    @Static
+    @JvmStatic
     fun getLogger(javaClass: Class<*>): Logger = getLogger(javaClass.name)
 
     /**
@@ -25,7 +33,7 @@ actual object LoggerFactory {
      * @param kClass the returned logger will be named after class
      * @return logger
      */
-    @Static
+    @JvmStatic
     fun getLogger(kClass: KClass<*>): Logger = getLogger(kClass.java.name)
 
     /**
@@ -34,8 +42,12 @@ actual object LoggerFactory {
      * @param name The name of the logger.
      * @return logger
      */
-    @Static
-    fun getCompatLogger(name: String): CompatLogger = javaLoggers.getOrPut(name) { CompatLogger(getLogger(name)) }
+    @JvmStatic
+    fun getCompatLogger(name: String): CompatLogger = javaLoggers.getOrPut(name) {
+        CompatLogger(
+            getLogger(name)
+        )
+    }
 
     /**
      * Return a java-compatible logger named corresponding to the class passed as parameter.
@@ -43,8 +55,9 @@ actual object LoggerFactory {
      * @param javaClass the returned logger will be named after class
      * @return logger
      */
-    @Static
-    fun getCompatLogger(javaClass: Class<*>): CompatLogger = getCompatLogger(javaClass.name)
+    @JvmStatic
+    fun getCompatLogger(javaClass: Class<*>): CompatLogger =
+        getCompatLogger(javaClass.name)
 
     /**
      * Return a logger named corresponding to the reified class.

@@ -111,8 +111,6 @@ object LoggerConfiguration {
                 logType.foreground.close + logType.background.close +
                 " " * (labelMax - logType.label.length) + " "
 
-    internal fun makeIndent(prefix: String): String = "" * (removeAnsi(prefix).length + badgeMax - 1) + "│ "
-
-    internal fun makeStackTrace(prefix: String, message: String): String =
-        Color.DARK_GRAY.foreground.open + makeIndent(prefix) + message + Color.DARK_GRAY.foreground.close
+    internal fun makeIndent(prefix: String): String = "" * (removeAnsi(prefix).length + badgeMax - 1) +
+            Color.DARK_GRAY.foreground.open + "│ " + Color.DARK_GRAY.foreground.close
 }

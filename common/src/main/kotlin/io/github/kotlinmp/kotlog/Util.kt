@@ -31,4 +31,8 @@ internal expect object PlatformDependedFeatures {
     fun currentDateTime(): Pair<Date, Time>
 
     fun getErrorName(throwable: Throwable): String
+
+    fun makeStacktrace(throwable: Throwable): List<String>
+
+    fun format(string: String, vararg arguments: Any?): String
 }
