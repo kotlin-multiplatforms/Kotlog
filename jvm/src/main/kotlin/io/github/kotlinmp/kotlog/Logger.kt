@@ -20,7 +20,11 @@ actual class Logger internal constructor(actual val name: String) {
     ) {
         val prefix = LoggerConfiguration.makePrefix()
         val typeString = (type?.let(LoggerConfiguration::beautify) ?: "")
-        println(prefix + typeString + if (arguments.isEmpty()) message else message.format(*arguments))
+        val formattedMessages = (if (arguments.isEmpty()) message else message.format(*arguments)).split('\n')
+        println(prefix + typeString + formattedMessages[0])
+        formattedMessages.drop(1).forEach {
+            println(LoggerConfiguration.makeIndent(prefix) + it)
+        }
         if (throwable != null) {
             val stringWriter = StringWriter()
             throwable.printStackTrace(PrintWriter(stringWriter))

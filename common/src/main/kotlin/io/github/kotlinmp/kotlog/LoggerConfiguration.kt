@@ -4,6 +4,7 @@ import io.github.kotlinmp.kotlog.compat.Static
 import io.github.kotlinmp.kotlog.styling.Color
 import io.github.kotlinmp.kotlog.styling.Modifier
 import io.github.kotlinmp.kotlog.styling.removeAnsi
+import kotlin.math.max
 
 /**
  * This object contains the configuration of whole loggers.
@@ -21,6 +22,7 @@ object LoggerConfiguration {
         }
     private var labelMax: Int = 0
     private var badgeMax: Int = 0
+    private var scopeMax: Int = 0
 
     /**
      * Whether all loggers log the name of scope.
@@ -89,7 +91,9 @@ object LoggerConfiguration {
         } else {
             ""
         } + if (logScopeName) {
-            (PlatformDependedFeatures.getCurrentScope()?.name ?: overridedScope?.name ?: "Kotlog") + " "
+            val scopeName = (PlatformDependedFeatures.getCurrentScope()?.name ?: overridedScope?.name ?: "Kotlog") + " "
+            scopeMax = max(scopeMax, scopeName.length)
+            scopeName.padEnd(scopeMax, ' ')
         } else {
             ""
         }).let {
@@ -114,6 +118,8 @@ object LoggerConfiguration {
                 logType.foreground.close + logType.background.close +
                 " " * (labelMax - logType.label.length) + " "
 
+    internal fun makeIndent(prefix: String): String = "" * (removeAnsi(prefix).length + badgeMax - 1) + "│ "
+
     internal fun makeStackTrace(prefix: String, message: String): String =
-        Color.DARK_GRAY.foreground.open + " " * (removeAnsi(prefix).length + badgeMax + 1) + message + Color.DARK_GRAY.foreground.close
+        Color.DARK_GRAY.foreground.open + makeIndent(prefix) + message + Color.DARK_GRAY.foreground.close
 }
