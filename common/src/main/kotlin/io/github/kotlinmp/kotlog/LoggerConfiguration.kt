@@ -25,6 +25,12 @@ object LoggerConfiguration {
     private var loggerMax: Int = 0
 
     /**
+     * Set or get global log level.
+     */
+    @Static
+    var globalLogLevel: LogLevel = LogLevel.ERROR
+
+    /**
      * Whether all loggers log the name of logger.
      */
     @Static
