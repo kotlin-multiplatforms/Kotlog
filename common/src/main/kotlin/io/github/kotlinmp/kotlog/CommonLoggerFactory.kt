@@ -1,10 +1,20 @@
 package io.github.kotlinmp.kotlog
 
+import io.github.kotlinmp.kotlog.compat.Name
+
 /**
  *  This object manufacture Logger instances by name.
  */
 object CommonLoggerFactory {
     private val loggers = mutableMapOf<String, Logger>()
+
+    /**
+     * The root logger instance in this library.
+     */
+    @Name("getRootLogger")
+    val ROOT_LOGGER by lazy {
+        getLogger(Logger.ROOT_LOGGER_NAME)
+    }
 
     /**
      * Return a logger named according to the name parameter

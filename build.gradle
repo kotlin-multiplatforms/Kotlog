@@ -22,7 +22,7 @@ plugins {
 
 allprojects {
     group 'io.github.kotlin-multiplatforms'
-    version '0.2.1'
+    version '0.2.2'
 }
 
 def pomConfig = {
@@ -83,7 +83,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMyPublicationPublication {
-        destination = file("${buildDir}/libs/kotlog-${project.version}.pom")
+        destination = file("${project(':jvm').buildDir}/libs/kotlog-${project.version}.pom")
     }
 }
 

@@ -17,6 +17,43 @@ class Logger internal constructor(val name: String) {
         val ROOT_LOGGER_NAME: String = "ROOT"
     }
 
+    private val level: LogLevel = LoggerConfiguration.globalLogLevel
+
+    /**
+     * Whether this logger logs info level message.
+     */
+    val isInfoEnabled: Boolean by lazy {
+        level < LogLevel.INFO
+    }
+
+    /**
+     * Whether this logger logs warn level message.
+     */
+    val isWarningEnabled: Boolean by lazy {
+        level < LogLevel.WARN
+    }
+
+    /**
+     * Whether this logger logs error level message.
+     */
+    val isErrorEnabled: Boolean by lazy {
+        level < LogLevel.ERROR
+    }
+
+    /**
+     * Whether this logger logs debug level message.
+     */
+    val isDebugEnabled: Boolean by lazy {
+        level < LogLevel.DEBUG
+    }
+
+    /**
+     * Whether this logger logs trace level message.
+     */
+    val isTraceEnabled: Boolean by lazy {
+        level < LogLevel.TRACE
+    }
+
     /**
      * Log an message at the DEBUG level with an according to the specified format and arguments.
      * If the exception (throwable) is not null, log that with the message.
@@ -33,6 +70,9 @@ class Logger internal constructor(val name: String) {
         type: LogType = LogType.LOG,
         vararg arguments: Any?
     ) {
+        if (LoggerConfiguration.globalLogLevel < level) {
+            return
+        }
         if (type != LogType.LOG && type !in LoggerConfiguration.allowedTypes) {
             return
         }
