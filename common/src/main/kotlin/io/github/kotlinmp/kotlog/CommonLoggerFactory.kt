@@ -11,7 +11,7 @@ object CommonLoggerFactory {
     /**
      * The root logger instance in this library.
      */
-    @Name("getRootLogger")
+    @get:Name("getRootLogger")
     val ROOT_LOGGER by lazy {
         getLogger(Logger.ROOT_LOGGER_NAME)
     }
