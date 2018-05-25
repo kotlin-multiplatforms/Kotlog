@@ -19,18 +19,37 @@ class Logger internal constructor(val name: String) {
 
     private val level: LogLevel = LoggerConfiguration.globalLogLevel
 
+    /**
+     * Whether this logger logs info level message.
+     */
     val isInfoEnabled: Boolean by lazy {
         level < LogLevel.INFO
     }
+
+    /**
+     * Whether this logger logs warn level message.
+     */
     val isWarningEnabled: Boolean by lazy {
         level < LogLevel.WARN
     }
+
+    /**
+     * Whether this logger logs error level message.
+     */
     val isErrorEnabled: Boolean by lazy {
         level < LogLevel.ERROR
     }
+
+    /**
+     * Whether this logger logs debug level message.
+     */
     val isDebugEnabled: Boolean by lazy {
         level < LogLevel.DEBUG
     }
+
+    /**
+     * Whether this logger logs trace level message.
+     */
     val isTraceEnabled: Boolean by lazy {
         level < LogLevel.TRACE
     }
