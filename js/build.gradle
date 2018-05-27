@@ -45,6 +45,8 @@ artifacts {
     archives sourcesJar
 }
 
+compileTestKotlin2Js.dependsOn npmInstall
+
 task runMocha(type: NodeTask, dependsOn: [compileTestKotlin2Js, populateNodeModules]) {
     script = file('node_modules/mocha/bin/mocha')
     args = [compileTestKotlin2Js.outputFile]
