@@ -8,7 +8,6 @@ import kotlin.reflect.KClass
  */
 object JavaLoggerFactory {
     private val loggers = mutableMapOf<String, Logger>()
-    private val javaLoggers = mutableMapOf<String, CompatLogger>()
 
     /**
      * Return a logger named according to the name parameter
@@ -18,6 +17,7 @@ object JavaLoggerFactory {
      */
     @JvmStatic
     fun getLogger(name: String): Logger = CommonLoggerFactory.getLogger(name)
+
     /**
      * Return a logger named corresponding to the class passed as parameter.
      *
@@ -43,11 +43,7 @@ object JavaLoggerFactory {
      * @return logger
      */
     @JvmStatic
-    fun getCompatLogger(name: String): CompatLogger = javaLoggers.getOrPut(name) {
-        CompatLogger(
-            getLogger(name)
-        )
-    }
+    fun getCompatLogger(name: String): CompatLogger = CommonLoggerFactory.getCompatLogger(name)
 
     /**
      * Return a java-compatible logger named corresponding to the class passed as parameter.

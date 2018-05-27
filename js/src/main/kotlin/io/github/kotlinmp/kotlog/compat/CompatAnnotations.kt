@@ -6,3 +6,5 @@ actual typealias Name = JsName
 actual annotation class Static
 
 actual annotation class Field
+
+actual annotation class Overloads

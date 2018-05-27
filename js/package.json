@@ -3,5 +3,9 @@
   "version": "0.1.0-SNAPSHOT",
   "author": "RanolP <asdhugh1@gmail.com>",
   "dependencies": {
+    "supports-color": "^5.4.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }

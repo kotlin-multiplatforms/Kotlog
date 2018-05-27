@@ -18,7 +18,12 @@ expect annotation class Name(val name: String)
 /**
  * This annotation is for platform compatible static things.
  */
-@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
+@Target(
+    AnnotationTarget.FUNCTION,
+    AnnotationTarget.PROPERTY,
+    AnnotationTarget.PROPERTY_GETTER,
+    AnnotationTarget.PROPERTY_SETTER
+)
 expect annotation class Static()
 
 /**
@@ -26,3 +31,9 @@ expect annotation class Static()
  */
 @Target(AnnotationTarget.FIELD)
 expect annotation class Field()
+
+/**
+ * This annotation is for platform compatible overloaded function or constructor.
+ */
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.CONSTRUCTOR)
+expect annotation class Overloads()

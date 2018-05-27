@@ -8,7 +8,6 @@ import io.github.kotlinmp.kotlog.*
  * @property logger Actual logger
  */
 class CompatLogger(val logger: Logger) {
-
     /**
      * The name of this logger instance.
      */
@@ -24,7 +23,7 @@ class CompatLogger(val logger: Logger) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
-    @JvmOverloads
+    @Overloads
     fun log(
         level: LogLevel,
         message: String,
@@ -41,7 +40,7 @@ class CompatLogger(val logger: Logger) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
-    @JvmOverloads
+    @Overloads
     fun debug(
         message: String,
         throwable: Throwable? = null,
@@ -57,7 +56,7 @@ class CompatLogger(val logger: Logger) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
-    @JvmOverloads
+    @Overloads
     fun error(
         message: String,
         throwable: Throwable? = null,
@@ -73,7 +72,7 @@ class CompatLogger(val logger: Logger) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
-    @JvmOverloads
+    @Overloads
     fun info(
         message: String,
         throwable: Throwable? = null,
@@ -89,7 +88,7 @@ class CompatLogger(val logger: Logger) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
-    @JvmOverloads
+    @Overloads
     fun trace(
         message: String,
         throwable: Throwable? = null,
@@ -105,7 +104,7 @@ class CompatLogger(val logger: Logger) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
-    @JvmOverloads
+    @Overloads
     fun warn(
         message: String,
         throwable: Throwable? = null,
@@ -120,7 +119,7 @@ class CompatLogger(val logger: Logger) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
-    @JvmOverloads
+    @Overloads
     fun debug(
         throwable: Throwable? = null,
         type: LogType = LogType.DEBUG,
@@ -131,7 +130,7 @@ class CompatLogger(val logger: Logger) {
     /**
      * This method is similar to [Logger.error] method except that the message evaluated lazy.
      */
-    @JvmOverloads
+    @Overloads
     fun error(
         throwable: Throwable? = null,
         type: LogType = LogType.ERROR,
@@ -142,7 +141,7 @@ class CompatLogger(val logger: Logger) {
     /**
      * This method is similar to [Logger.info] method except that the message evaluated lazy.
      */
-    @JvmOverloads
+    @Overloads
     fun info(
         throwable: Throwable? = null,
         type: LogType = LogType.INFO,
@@ -153,7 +152,7 @@ class CompatLogger(val logger: Logger) {
     /**
      * This method is similar to [Logger.trace] method except that the message evaluated lazy.
      */
-    @JvmOverloads
+    @Overloads
     fun trace(
         throwable: Throwable? = null,
         type: LogType = LogType.TRACE,
@@ -164,7 +163,7 @@ class CompatLogger(val logger: Logger) {
     /**
      * This method is similar to [Logger.warn] method except that the message evaluated lazy.
      */
-    @JvmOverloads
+    @Overloads
     fun warn(
         throwable: Throwable? = null,
         type: LogType = LogType.WARN,
@@ -175,7 +174,7 @@ class CompatLogger(val logger: Logger) {
     /**
      * This method is similar to [Logger.error] method except that the message from the throwable
      */
-    @JvmOverloads
+    @Overloads
     fun error(
         throwable: Throwable,
         type: LogType = LogType.ERROR,
