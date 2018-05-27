@@ -14,12 +14,13 @@ object LoggerConfiguration {
      * Contains allowed types for logger.
      */
     @Static
-    var allowedTypes: List<LogType> = listOf()
+    var allowedTypes: Set<LogType> = setOf()
         set(value) {
             field = value
             labelMax = allowedTypes.map { it.label.length }.max() ?: 0
             badgeMax = allowedTypes.map { it.badge.length }.max() ?: 0
         }
+
     private var labelMax: Int = 0
     private var badgeMax: Int = 0
     private var loggerMax: Int = 0
@@ -62,12 +63,21 @@ object LoggerConfiguration {
     var timeFormat: String = "[hh:mm:ss]"
 
     init {
-        allowedTypes = listOf(
+        allowedTypes = setOf(
             LogType.INFO,
             LogType.WARN,
             LogType.ERROR,
             LogType.DEBUG,
             LogType.TRACE
+        )
+    }
+
+    fun extendWebTypes() {
+        allowedTypes += setOf(
+            LogType.INFO, // 1xx
+            LogType.SUCCESS, // 2xx
+            LogType.REDIRECTION, // 3xx
+            LogType.ERROR // 4xx, 5xx
         )
     }
 

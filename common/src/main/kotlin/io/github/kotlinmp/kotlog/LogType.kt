@@ -69,6 +69,12 @@ data class LogType(
         val PENDING = LogType("pending", Color.MAGENTA.foreground, Color.UNSET.background, "☐")
 
         /**
+         * Standard type that meaning of redirecting
+         */
+        @Field
+        val REDIRECTION = LogType("redirect", Color.BLUE.foreground, Color.UNSET.background, "↔")
+
+        /**
          * Standard type that meaning of start
          */
         @Field
