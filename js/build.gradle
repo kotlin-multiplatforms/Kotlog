@@ -1,4 +1,5 @@
 apply plugin: 'kotlin-platform-js'
+apply plugin: 'kotlin-dce-js'
 apply plugin: 'com.moowork.node'
 
 repositories {
@@ -6,14 +7,16 @@ repositories {
 }
 
 dependencies {
-    expectedBy project(':common')
-
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-js', version: kotlin_version
     testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-js', version: kotlin_version
+
+    expectedBy project(':common')
 }
 
+
+
 [compileKotlin2Js, compileTestKotlin2Js]*.configure {
-    kotlinOptions.moduleKind = "umd"
+    kotlinOptions.moduleKind = "commonjs"
     kotlinOptions.sourceMap = true
     kotlinOptions.sourceMapEmbedSources = "always"
 }
@@ -41,3 +44,10 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives sourcesJar
 }
+
+task runMocha(type: NodeTask, dependsOn: [compileTestKotlin2Js, populateNodeModules]) {
+    script = file('node_modules/mocha/bin/mocha')
+    args = [compileTestKotlin2Js.outputFile]
+}
+
+test.dependsOn runMocha

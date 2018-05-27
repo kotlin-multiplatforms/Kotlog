@@ -1,6 +1,7 @@
 package io.github.kotlinmp.kotlog
 
 import io.github.kotlinmp.kotlog.compat.Field
+import io.github.kotlinmp.kotlog.compat.Name
 import io.github.kotlinmp.kotlog.styling.Color
 
 /**
@@ -63,6 +64,7 @@ class Logger internal constructor(val name: String) {
      * @param throwable The exception (throwable) to log.
      * @param arguments The arguments. If it isn't empty, the message is formatted through this.
      */
+    @Name("log")
     fun log(
         level: LogLevel,
         message: String,

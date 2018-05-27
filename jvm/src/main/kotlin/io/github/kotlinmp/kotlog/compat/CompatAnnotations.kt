@@ -5,3 +5,5 @@ actual typealias Name = JvmName
 actual typealias Static = JvmStatic
 
 actual typealias Field = JvmField
+
+actual typealias Overloads = JvmOverloads
