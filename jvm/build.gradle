@@ -33,6 +33,10 @@ compileTestKotlin {
 
 sourceCompatibility = '1.8'
 
+sourceSets.main.resources {
+    include '**/*.*'
+}
+
 jar {
     project(':common').configurations.archives.allArtifacts.each {
         from zipTree(it.file.absolutePath)
