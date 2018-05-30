@@ -22,7 +22,7 @@ plugins {
 
 allprojects {
     group 'io.github.kotlin-multiplatforms'
-    version '0.2.6'
+    version '0.2.7'
 }
 
 def pomConfig = {

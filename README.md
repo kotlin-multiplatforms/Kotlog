@@ -1,9 +1,26 @@
+[korean]: https://github.com/kotlin-multiplatforms/Kotlog/blob/master/README.ko.md
+[english]: https://github.com/kotlin-multiplatforms/Kotlog/blob/master/README.md
+
+[bintray-badge]: https://api.bintray.com/packages/ranol-github/maven/kotlog/images/download.svg
+[bintray-url]: https://bintray.com/ranol-github/maven/kotlog
+[jitpack-badge]: https://img.shields.io/jitpack/v/kotlin-multiplatforms/Kotlog.svg
+[jitpack-url]: https://jitpack.io/#kotlin-multiplatforms/Kotlog
+
+[license-badge]: https://img.shields.io/github/license/kotlin-multiplatforms/Kotlog.svg
+[license-url]: https://github.com/kotlin-multiplatforms/Kotlog/blob/master/LICENSE
+
+[travis-badge]: https://img.shields.io/travis/kotlin-multiplatforms/Kotlog.svg
+[travis-url]: https://travis-ci.org/kotlin-multiplatforms/Kotlog
+
+[ ![travis-badge][] ][travis-url]
+[ ![bintray-badge][] ][bintray-url]
+[ ![license-badge][] ][license-url]
 # Kotlog
 
 Multiplatform kotlin logging library
 
- * [한국어](https://github.com/kotlin-multiplatforms/Kotlog/blob/master/README.ko.md)
- * [English](https://github.com/kotlin-multiplatforms/Kotlog/blob/master/README.md)
+ * [한국어][korean]
+ * [English][english]
 
 ## Getting Started
 
@@ -12,7 +29,44 @@ Multiplatform kotlin logging library
 
 ### Installing
 
-#### Via jitpack
+#### Via JCenter (recommended)
+
+[ ![bintray-badge][] ][bintray-url]
+
+Maven
+
+```xml
+<repositories>
+  <repository>
+    <id>jcenter</id>
+    <name>jcenter-bintray</name>
+    <url>http://jcenter.bintray.com</url>
+  </repository>
+</repositories>
+
+<dependency>
+  <groupId>io.github.kotlin-multiplatforms</groupId>
+  <artifactId>kotlog</artifactId>
+  <version>VERSION</version>
+</dependency>
+```
+
+Gradle
+
+```gradle
+repositories {
+  ...
+  jcenter()
+}
+
+dependencies {
+   implementation 'io.github.kotlin-multiplatforms:kotlog:VERSION'
+}
+```
+
+#### Via JitPack (maybe broken)
+
+[ ![jitpack-badge][] ][jitpack-url]
 
 Maven
 
@@ -27,7 +81,7 @@ Maven
 <dependency>
   <groupId>com.github.kotlin-multiplatforms.Kotlog</groupId>
   <artifactId>jvm</artifactId>
-  <version>bf8c5a622b</version>
+  <version>VERSION</version>
 </dependency>
 ```
 
@@ -40,7 +94,7 @@ repositories {
 }
 
 dependencies {
-   implementation 'com.github.kotlin-multiplatforms.Kotlog:jvm:bf8c5a622b'
+   implementation 'com.github.kotlin-multiplatforms.Kotlog:jvm:VERSION'
 }
 ```
 
@@ -48,6 +102,8 @@ dependencies {
 
  * Gradle - The build system and dependency manager
  * Jitpack - Simplest maven repository
+ * JCenter - Maven repository that always be relieved
+
 
 ## Contributing
 
@@ -71,4 +127,10 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
  * The translation may not be correct
  * Inspiration by [kotlin-logging](https://github.com/MicroUtils/kotlin-logging)
- * Referred the logging message style from [signale](https://github.com/klauscfhq/signale)
+ * Referred the logging message style and code structure from [signale](https://github.com/klauscfhq/signale)
+ * Quote the code of [supports-color](https://github.com/chalk/supports-color)
+ * Use the regex that form [ansi-regex](https://github.com/chalk/ansi-regex)
+ * Referred the structure of [slf4j-api](https://www.slf4j.org/), and made the layer for it
+ * Quote the code of [color-convert](https://github.com/qix-/color-convert)
+ * Quote the color list of [color-names](https://github.com/jonathantneal/color-names)
+ * Reffered the code from [ansi-styles](https://github.com/chalk/ansi-styles)
