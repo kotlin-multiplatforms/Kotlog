@@ -18,7 +18,7 @@ class Logger internal constructor(val name: String) {
         val ROOT_LOGGER_NAME: String = "ROOT"
     }
 
-    private val level: LogLevel = LoggerConfiguration.globalLogLevel
+    private val level: LogLevel = LoggerConfiguration.logLevelModifier(this) ?: LoggerConfiguration.globalLogLevel
 
     /**
      * Whether this logger logs info level message.
@@ -72,7 +72,7 @@ class Logger internal constructor(val name: String) {
         type: LogType = LogType.LOG,
         vararg arguments: Any?
     ) {
-        if (LoggerConfiguration.globalLogLevel < level) {
+        if (this.level < level) {
             return
         }
         if (type != LogType.LOG && type !in LoggerConfiguration.allowedTypes) {
