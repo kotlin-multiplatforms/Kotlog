@@ -2,7 +2,7 @@ package io.github.kotlinmp.kotlog
 
 import org.slf4j.helpers.MarkerIgnoringBase
 
-class KotlogLoggerAdapter(val logger: Logger) : MarkerIgnoringBase() {
+class KotlogLoggerAdapter(private val logger: Logger) : MarkerIgnoringBase() {
     override fun warn(msg: String?) {
         logger.warn(msg ?: "")
     }
