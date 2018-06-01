@@ -32,6 +32,12 @@ object LoggerConfiguration {
     var globalLogLevel: LogLevel = LogLevel.ERROR
 
     /**
+     * Set or get log level modifier. It called when logger created.
+     */
+    @Static
+    var logLevelModifier: (Logger) -> LogLevel? = { null }
+
+    /**
      * Whether all loggers log the name of logger.
      */
     @Static
@@ -72,6 +78,9 @@ object LoggerConfiguration {
         )
     }
 
+    /**
+     * Extends log types used by the http status code.
+     */
     fun extendWebTypes() {
         allowedTypes += setOf(
             LogType.INFO, // 1xx

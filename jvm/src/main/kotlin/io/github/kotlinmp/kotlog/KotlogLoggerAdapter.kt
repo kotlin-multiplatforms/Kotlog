@@ -2,72 +2,23 @@ package io.github.kotlinmp.kotlog
 
 import org.slf4j.helpers.MarkerIgnoringBase
 
+/**
+ * The adapter of kotlog logger that is for slf4j
+ */
 class KotlogLoggerAdapter(val logger: Logger) : MarkerIgnoringBase() {
-    override fun warn(msg: String?) {
-        logger.warn(msg ?: "")
-    }
-
-    override fun warn(format: String?, arg: Any?) {
-        logger.warn(format ?: "", arguments = *arrayOf(arg))
-    }
-
-    override fun warn(format: String?, vararg arguments: Any?) {
-        logger.warn(format ?: "", arguments = *arguments)
-    }
-
-    override fun warn(format: String?, arg1: Any?, arg2: Any?) {
-        logger.warn(format ?: "", arguments = *arrayOf(arg1, arg2))
-    }
-
-    override fun warn(msg: String?, t: Throwable?) {
-        logger.warn(msg ?: "", t)
-    }
-
-    override fun getName(): String = logger.name
-
-    override fun info(msg: String?) {
-        logger.info(msg ?: "")
-    }
-
-    override fun info(format: String?, arg: Any?) {
-        logger.info(format ?: "", arguments = *arrayOf(arg))
-    }
-
-    override fun info(format: String?, arg1: Any?, arg2: Any?) {
-        logger.info(format ?: "", arguments = *arrayOf(arg1, arg2))
-    }
-
-    override fun info(format: String?, vararg arguments: Any?) {
-        logger.info(format ?: "", arguments = *arguments)
-    }
-
-    override fun info(msg: String?, t: Throwable?) {
-        logger.info(msg ?: "", t)
-    }
+    override fun isDebugEnabled(): Boolean = logger.isDebugEnabled
 
     override fun isErrorEnabled(): Boolean = logger.isErrorEnabled
 
-    override fun error(msg: String?) {
-        logger.error(msg ?: "")
-    }
+    override fun isInfoEnabled(): Boolean = logger.isInfoEnabled
 
-    override fun error(format: String?, arg: Any?) {
-        logger.error(format ?: "", arguments = *arrayOf(arg))
-    }
+    override fun isTraceEnabled(): Boolean = logger.isTraceEnabled
 
-    override fun error(format: String?, arg1: Any?, arg2: Any?) {
-        logger.error(format ?: "", arguments = *arrayOf(arg1, arg2))
-    }
+    override fun isWarnEnabled(): Boolean = logger.isWarningEnabled
 
-    override fun error(format: String?, vararg arguments: Any?) {
-        logger.error(format ?: "", arguments = *arguments)
-    }
 
-    override fun error(msg: String?, t: Throwable?) {
-        logger.error(msg ?: "", t)
-    }
+    override fun getName(): String = logger.name
 
-    override fun isDebugEnabled(): Boolean = logger.isDebugEnabled
 
     override fun debug(msg: String?) {
         logger.debug(msg ?: "")
@@ -89,7 +40,44 @@ class KotlogLoggerAdapter(val logger: Logger) : MarkerIgnoringBase() {
         logger.debug(msg ?: "", t)
     }
 
-    override fun isInfoEnabled(): Boolean = logger.isInfoEnabled
+
+    override fun error(msg: String?) {
+        logger.error(msg ?: "")
+    }
+
+    override fun error(format: String?, arg: Any?) {
+        logger.error(format ?: "", arguments = *arrayOf(arg))
+    }
+
+    override fun error(format: String?, arg1: Any?, arg2: Any?) {
+        logger.error(format ?: "", arguments = *arrayOf(arg1, arg2))
+    }
+
+    override fun error(format: String?, vararg arguments: Any?) {
+        logger.error(format ?: "", arguments = *arguments)
+    }
+
+    override fun error(msg: String?, t: Throwable?) {
+        logger.error(msg ?: "", t)
+    }
+
+
+    override fun info(format: String?, arg: Any?) {
+        logger.info(format ?: "", arguments = *arrayOf(arg))
+    }
+
+    override fun info(format: String?, arg1: Any?, arg2: Any?) {
+        logger.info(format ?: "", arguments = *arrayOf(arg1, arg2))
+    }
+
+    override fun info(format: String?, vararg arguments: Any?) {
+        logger.info(format ?: "", arguments = *arguments)
+    }
+
+    override fun info(msg: String?, t: Throwable?) {
+        logger.info(msg ?: "", t)
+    }
+
 
     override fun trace(msg: String?) {
         logger.trace(msg ?: "")
@@ -111,8 +99,28 @@ class KotlogLoggerAdapter(val logger: Logger) : MarkerIgnoringBase() {
         logger.trace(msg ?: "", t)
     }
 
-    override fun isWarnEnabled(): Boolean = logger.isWarningEnabled
 
+    override fun warn(msg: String?) {
+        logger.warn(msg ?: "")
+    }
 
-    override fun isTraceEnabled(): Boolean = logger.isTraceEnabled
+    override fun warn(format: String?, arg: Any?) {
+        logger.warn(format ?: "", arguments = *arrayOf(arg))
+    }
+
+    override fun warn(format: String?, vararg arguments: Any?) {
+        logger.warn(format ?: "", arguments = *arguments)
+    }
+
+    override fun warn(format: String?, arg1: Any?, arg2: Any?) {
+        logger.warn(format ?: "", arguments = *arrayOf(arg1, arg2))
+    }
+
+    override fun warn(msg: String?, t: Throwable?) {
+        logger.warn(msg ?: "", t)
+    }
+
+    override fun info(msg: String?) {
+        logger.info(msg ?: "")
+    }
 }

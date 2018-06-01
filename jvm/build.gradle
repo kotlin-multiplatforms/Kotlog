@@ -1,6 +1,6 @@
 plugins {
-    id 'org.jetbrains.dokka' version '0.9.16'
-    id 'com.github.johnrengelman.shadow' version '2.0.3'
+    id 'org.jetbrains.dokka' version '0.9.17'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
 }
 
 apply plugin: 'kotlin-platform-jvm'
